@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Game - Kiến Thức Hưng Yên Mới</title>
+    <title>Mini Game - Hung Yen New Knowledge</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -149,15 +149,15 @@
         }
         
         .bronze {
-            color: #cd7f32; /* Màu đồng */
+            color: #cd7f32; /* Bronze color */
         }
         
         .silver {
-            color: #c0c0c0; /* Màu bạc */
+            color: #c0c0c0; /* Silver color */
         }
         
         .gold {
-            color: #ffd700; /* Màu vàng */
+            color: #ffd700; /* Gold color */
         }
         
         .result-message {
@@ -186,9 +186,9 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 520px; /* chỉ phần trên cùng */
+        height: 520px; /* top section only */
         z-index: 9999;
-        pointer-events: none; /* cho phép click xuyên */
+        pointer-events: none; /* allow click-through */
     }
 
     .iframe-layer iframe {
@@ -196,16 +196,16 @@
         height: 100%;
         border: none;
         display: block;
-        pointer-events: auto; /* vẫn click được bên trong iframe */
+        pointer-events: auto; /* still clickable inside iframe */
     }
 
 </style>
 </head>
 <body>
 
-    <!-- Iframe trên cùng -->
+    <!-- Top Iframe -->
     <div class="iframe-layer">
-        <iframe src="https://hungyenhoinhapvaphattrien.github.io/vi/top"></iframe>
+        <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
     </div>
         
 <script>
@@ -219,17 +219,17 @@ window.addEventListener("load", updatePadding);
 window.addEventListener("resize", updatePadding);
 </script>
     <div class="container">
-        <h2 class="section-title"><i class="fas fa-gamepad"></i> MINI GAME: KIẾN THỨC HƯNG YÊN MỚI</h2>
-        <p class="intro-text">Thử thách kiến thức của bạn về tỉnh Hưng Yên sau khi sát nhập với Thái Bình</p>
+        <h2 class="section-title"><i class="fas fa-gamepad"></i> MINI GAME: NEW HUNG YEN KNOWLEDGE</h2>
+        <p class="intro-text">Test your knowledge about Hung Yen province after merging with Thai Binh</p>
         
         <div class="game-container">
             <!-- Start Screen -->
             <div class="start-screen">
-                <h3>Luật chơi:</h3>
-                <p>- Bạn có 15 giây để trả lời mỗi câu hỏi</p>
-                <p>- Tổng cộng có 10 câu hỏi trắc nghiệm</p>
-                <p>- Kết quả sẽ được đánh giá dựa trên số câu trả lời đúng</p>
-                <button id="start-btn" class="btn">Bắt đầu chơi</button>
+                <h3>Game Rules:</h3>
+                <p>- You have 15 seconds to answer each question</p>
+                <p>- There are 10 multiple-choice questions in total</p>
+                <p>- Results will be evaluated based on correct answers</p>
+                <button id="start-btn" class="btn">Start Game</button>
             </div>
             
             <!-- Game Screen -->
@@ -237,10 +237,10 @@ window.addEventListener("resize", updatePadding);
                 <div class="timer-container">
                     <div class="timer-bar" id="timer-bar"></div>
                 </div>
-                <div class="progress" id="progress">Câu 1/10</div>
+                <div class="progress" id="progress">Question 1/10</div>
                 <div class="question" id="question"></div>
                 <div class="options" id="options"></div>
-                <button id="next-btn" class="btn">Câu tiếp theo</button>
+                <button id="next-btn" class="btn">Next Question</button>
             </div>
             
             <!-- Result Screen -->
@@ -250,173 +250,173 @@ window.addEventListener("resize", updatePadding);
                 </div>
                 <div class="score" id="score"></div>
                 <div class="result-message" id="result-message"></div>
-                <button id="restart-btn" class="btn">Chơi lại</button>
+                <button id="restart-btn" class="btn">Play Again</button>
             </div>
         </div>
     </div>
     
     <script>
-        // Tất cả các câu hỏi có sẵn
+        // All available questions
         const allQuestions = [
             {
-                question: "Tỉnh Hưng Yên mới được sát nhập với tỉnh nào?",
-                options: ["Hải Dương", "Hà Nam", "Thái Bình", "Hà Nội"],
+                question: "Which province did Hung Yen recently merge with?",
+                options: ["Hai Duong", "Ha Nam", "Thai Binh", "Hanoi"],
                 answer: 2
             },
             {
-                question: "Hưng Yên nổi tiếng với đặc sản nào sau đây?",
-                options: ["Nhãn lồng", "Vải thiều", "Xoài cát", "Sầu riêng"],
+                question: "What is Hung Yen famous for?",
+                options: ["Longan fruit", "Lychee", "Mango", "Durian"],
                 answer: 0
             },
             {
-                question: "Di tích lịch sử nào sau đây nằm ở Hưng Yên?",
-                options: ["Đền Hùng", "Đền Trần", "Chùa Chuông", "Văn Miếu"],
+                question: "Which historical site is located in Hung Yen?",
+                options: ["Hung Temple", "Tran Temple", "Chuong Pagoda", "Temple of Literature"],
                 answer: 2
             },
             {
-                question: "Hưng Yên được mệnh danh là gì?",
-                options: ["Đất học", "Đất võ", "Đất nghề", "Đất thép"],
+                question: "What is Hung Yen known as?",
+                options: ["Land of Learning", "Land of Martial Arts", "Land of Crafts", "Land of Steel"],
                 answer: 0
             },
             {
-                question: "Sông nào chảy qua địa phận Hưng Yên?",
-                options: ["Sông Hồng", "Sông Đáy", "Sông Luộc", "Tất cả các đáp án trên"],
+                question: "Which river flows through Hung Yen?",
+                options: ["Red River", "Day River", "Luoc River", "All of the above"],
                 answer: 3
             },
             {
-                question: "Lễ hội đặc trưng của Hưng Yên là gì?",
-                options: ["Lễ hội chùa Hương", "Lễ hội đền Mẫu", "Lễ hội Phố Hiến", "Lễ hội Gò Đống Đa"],
+                question: "What is the traditional festival of Hung Yen?",
+                options: ["Huong Pagoda Festival", "Mother Goddess Temple Festival", "Pho Hien Festival", "Dong Da Mound Festival"],
                 answer: 2
             },
             {
-                question: "Hưng Yên tiếp giáp với tỉnh nào sau đây?",
-                options: ["Bắc Ninh", "Hải Phòng", "Nam Định", "Tất cả các đáp án trên"],
+                question: "Which province borders Hung Yen?",
+                options: ["Bac Ninh", "Hai Phong", "Nam Dinh", "All of the above"],
                 answer: 3
             },
             {
-                question: "Nghề truyền thống nào nổi tiếng ở Hưng Yên?",
-                options: ["Gốm sứ", "Dệt lụa", "Chạm khắc gỗ", "Làm nón lá"],
+                question: "What traditional craft is Hung Yen famous for?",
+                options: ["Pottery", "Silk weaving", "Wood carving", "Conical hat making"],
                 answer: 1
             },
             {
-                question: "Danh nhân nào sau đây quê ở Hưng Yên?",
-                options: ["Nguyễn Trãi", "Chu Văn An", "Phạm Ngũ Lão", "Lê Quý Đôn"],
+                question: "Which historical figure was born in Hung Yen?",
+                options: ["Nguyen Trai", "Chu Van An", "Pham Ngu Lao", "Le Quy Don"],
                 answer: 2
             },
             {
-                question: "Hưng Yên được thành lập vào năm nào?",
+                question: "When was Hung Yen established?",
                 options: ["1831", "1890", "1900", "1954"],
                 answer: 0
             },
             {
-                question: "Tỉnh Hưng Yên nằm ở khu vực nào của đồng bằng sông Hồng?",
-                options: ["Trung tâm đồng bằng sông Hồng", "Ven biển", "Miền núi phía Bắc", "Tây Bắc"],
+                question: "Where is Hung Yen located in the Red River Delta?",
+                options: ["Center of Red River Delta", "Coastal area", "Northern mountainous region", "Northwest region"],
                 answer: 0
             },
             {
-                question: "Nhãn lồng – đặc sản nổi tiếng của tỉnh Hưng Yên – thường thu hoạch vào tháng mấy?",
-                options: ["Tháng 4 – 5", "Tháng 6 – 7", "Tháng 8 – 9", "Tháng 10 – 11"],
+                question: "When is the famous longan fruit of Hung Yen typically harvested?",
+                options: ["April-May", "June-July", "August-September", "October-November"],
                 answer: 2
             },
             {
-                question: "Hưng Yên có di tích Phố Hiến nổi tiếng, từng được mệnh danh là gì trong lịch sử?",
-                options: ["Kinh đô của Bắc Bộ", "Tiểu Tràng An", "Phố cổ của sông Hồng", "Phố cảng thứ hai của Việt Nam"],
+                question: "Pho Hien historical site in Hung Yen was known as what in history?",
+                options: ["Capital of Northern Vietnam", "Little Trang An", "Old Quarter of Red River", "Second port city of Vietnam"],
                 answer: 3
             },
             {
-                question: "Ai là vị nữ tướng nổi tiếng quê ở Hưng Yên đã tham gia khởi nghĩa Hai Bà Trưng?",
-                options: ["Lê Chân", "Bát Nàn", "Thiều Hoa", "Trưng Trắc"],
+                question: "Who was the famous female general from Hung Yen who participated in the Trung Sisters' uprising?",
+                options: ["Le Chan", "Bat Nan", "Thieu Hoa", "Trung Trac"],
                 answer: 1
             },
             {
-                question: "Đền Đa Hòa ở Hưng Yên thờ nhân vật lịch sử nào?",
-                options: ["Chử Đồng Tử", "Lý Thường Kiệt", "Trần Hưng Đạo", "Phạm Ngũ Lão"],
+                question: "Which historical figure is worshipped at Da Hoa Temple in Hung Yen?",
+                options: ["Chu Dong Tu", "Ly Thuong Kiet", "Tran Hung Dao", "Pham Ngu Lao"],
                 answer: 0
             },
             {
-                question: "Con sông nào chảy qua trung tâm tỉnh Hưng Yên?",
-                options: ["Sông Hồng", "Sông Đuống", "Sông Luộc", "Sông Cầu"],
+                question: "Which river flows through the center of Hung Yen province?",
+                options: ["Red River", "Duong River", "Luoc River", "Cau River"],
                 answer: 0
             },
             {
-                question: "Lễ hội Chử Đồng Tử – Tiên Dung thường được tổ chức ở huyện nào của Hưng Yên?",
-                options: ["Văn Lâm", "Khoái Châu", "Yên Mỹ", "Ân Thi"],
+                question: "Where is the Chu Dong Tu - Tien Dung festival typically held in Hung Yen?",
+                options: ["Van Lam district", "Khoai Chau district", "Yen My district", "An Thi district"],
                 answer: 1
             },
             {
-                question: "Món bánh nào sau đây là đặc sản truyền thống nổi tiếng của Hưng Yên?",
-                options: ["Bánh chưng Tranh Khúc", "Bánh cuốn Phủ Lý", "Bánh răng bừa Thổ Hoàng", "Bánh gai Tứ Trụ"],
+                question: "Which traditional cake is a famous specialty of Hung Yen?",
+                options: ["Banh chung Tranh Khuc", "Banh cuon Phu Ly", "Banh rang bua Tho Hoang", "Banh gai Tu Tru"],
                 answer: 2
             },
             {
-                question: "Đặc sản nào sau đây của Hưng Yên không phải là sản phẩm làng nghề truyền thống?",
-                options: ["Tương Bần", "Nhãn lồng", "Chả mực", "Hương trầm"],
+                question: "Which of these Hung Yen specialties is NOT a traditional craft village product?",
+                options: ["Ban soy sauce", "Longan fruit", "Squid sausage", "Incense"],
                 answer: 2
             },
             {
-                question: "Hưng Yên có tuyến quốc lộ nào chạy qua nối liền Hà Nội với Hải Phòng?",
-                options: ["Quốc lộ 1A", "Quốc lộ 5", "Quốc lộ 18", "Quốc lộ 21"],
+                question: "Which national highway runs through Hung Yen connecting Hanoi to Hai Phong?",
+                options: ["National Highway 1A", "National Highway 5", "National Highway 18", "National Highway 21"],
                 answer: 1
             },
             {
-                question: "Thái Bình được mệnh danh là quê hương của loại hình nghệ thuật truyền thống nào?",
-                options: ["Quan họ", "Chèo", "Cải lương", "Tuồng"],
+                question: "Thai Binh is known as the homeland of which traditional art form?",
+                options: ["Quan ho folk singing", "Cheo opera", "Cai luong opera", "Tuong theater"],
                 answer: 1
             },
             {
-                question: "Con sông lớn nào tạo thành ranh giới tự nhiên giữa Thái Bình và Nam Định?",
-                options: ["Sông Đáy", "Sông Luộc", "Sông Trà Lý", "Sông Hồng"],
+                question: "Which major river forms the natural border between Thai Binh and Nam Dinh?",
+                options: ["Day River", "Luoc River", "Tra Ly River", "Red River"],
                 answer: 3
             },
             {
-                question: "Nghề làm muối truyền thống nổi tiếng ở xã nào thuộc huyện Thái Thụy, Thái Bình?",
-                options: ["Diêm Điền", "Thụy Hải", "Thụy Xuân", "Thụy Tân"],
+                question: "Which commune in Thai Thuy district, Thai Binh is famous for traditional salt making?",
+                options: ["Diem Dien", "Thuy Hai", "Thuy Xuan", "Thuy Tan"],
                 answer: 0
             },
             {
-                question: "Lễ hội đền Đồng Bằng ở Thái Bình thờ vị thần nào?",
-                options: ["Đức Thánh Trần", "Vua Đinh Tiên Hoàng", "Đức Vua Cha Bát Hải Động Đình", "Lý Nam Đế"],
+                question: "Which deity is worshipped at Dong Bang Temple festival in Thai Binh?",
+                options: ["Saint Tran", "King Dinh Tien Hoang", "The Sea King", "Ly Nam De"],
                 answer: 2
             },
             {
-                question: "Chùa Keo – một di tích nổi tiếng của Thái Bình – có niên đại xây dựng từ thế kỷ nào?",
-                options: ["Thế kỷ XI", "Thế kỷ XII", "Thế kỷ XVII", "Thế kỷ XIX"],
+                question: "From which century does Keo Pagoda - a famous relic in Thai Binh - date back?",
+                options: ["11th century", "12th century", "17th century", "19th century"],
                 answer: 2
             },
             {
-                question: "Thái Bình là quê hương của vị vua nào triều Trần?",
-                options: ["Trần Thái Tông", "Trần Nhân Tông", "Trần Cảnh", "Trần Hưng Đạo"],
+                question: "Thai Binh is the hometown of which Tran dynasty king?",
+                options: ["Tran Thai Tong", "Tran Nhan Tong", "Tran Canh", "Tran Hung Dao"],
                 answer: 2
             },
             {
-                question: "Biển Thái Bình nổi tiếng với khu du lịch biển nào?",
-                options: ["Biển Đồng Châu", "Biển Cửa Lò", "Biển Hải Tiến", "Biển Sầm Sơn"],
+                question: "Which beach destination is Thai Binh famous for?",
+                options: ["Dong Chau beach", "Cua Lo beach", "Hai Tien beach", "Sam Son beach"],
                 answer: 0
             },
             {
-                question: "Thái Bình có đặc sản nổi tiếng là cây dược liệu gì được trồng nhiều ở huyện Quỳnh Phụ?",
-                options: ["Hoa cúc", "Hoa nhài", "Cây nghệ", "Cây thìa canh"],
+                question: "What medicinal plant is Thai Binh famous for growing in Quynh Phu district?",
+                options: ["Chrysanthemum", "Jasmine", "Turmeric", "Gymnema sylvestre"],
                 answer: 3
             },
             {
-                question: "Ngôi làng nghề nào của Thái Bình nổi tiếng với sản phẩm chiếu cói truyền thống?",
-                options: ["Làng Hới", "Làng Vạn Phúc", "Làng Ninh Hiệp", "Làng Đông Hồ"],
+                question: "Which craft village in Thai Binh is famous for traditional sedge mats?",
+                options: ["Hoi village", "Van Phuc village", "Ninh Hiep village", "Dong Ho village"],
                 answer: 0
             },
             {
-                question: "Địa hình chủ yếu của Thái Bình là gì?",
-                options: ["Đồng bằng ven biển", "Trung du", "Đồi núi thấp", "Cao nguyên"],
+                question: "What is the primary terrain of Thai Binh?",
+                options: ["Coastal plain", "Midlands", "Low mountains", "Plateau"],
                 answer: 0
             }
         ];
         
-        // Biến game
+        // Game variables
         let currentQuestion = 0;
         let score = 0;
         let timer;
         let timeLeft = 15;
         let selectedOption = null;
-        let questions = []; // Mảng chứa 10 câu hỏi ngẫu nhiên
+        let questions = []; // Array containing 10 random questions
         
         // DOM Elements
         const startScreen = document.querySelector('.start-screen');
@@ -433,13 +433,13 @@ window.addEventListener("resize", updatePadding);
         const resultMessageEl = document.getElementById('result-message');
         const resultIconEl = document.getElementById('result-icon');
         
-        // Bắt đầu game
+        // Start game
         startBtn.addEventListener('click', startGame);
         nextBtn.addEventListener('click', nextQuestion);
         restartBtn.addEventListener('click', restartGame);
         
         function startGame() {
-            // Chọn ngẫu nhiên 10 câu hỏi từ danh sách
+            // Randomly select 10 questions from the list
             questions = getRandomQuestions(10);
             
             startScreen.style.display = 'none';
@@ -449,9 +449,9 @@ window.addEventListener("resize", updatePadding);
             loadQuestion();
         }
         
-        // Hàm chọn ngẫu nhiên n câu hỏi từ danh sách
+        // Function to randomly select n questions from the list
         function getRandomQuestions(n) {
-            // Tạo bản sao của mảng allQuestions để không ảnh hưởng đến mảng gốc
+            // Create a copy of allQuestions array to avoid modifying the original
             const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
             return shuffled.slice(0, n);
         }
@@ -462,7 +462,7 @@ window.addEventListener("resize", updatePadding);
             
             const question = questions[currentQuestion];
             questionEl.textContent = question.question;
-            progressEl.textContent = `Câu ${currentQuestion + 1}/${questions.length}`;
+            progressEl.textContent = `Question ${currentQuestion + 1}/${questions.length}`;
             
             optionsEl.innerHTML = '';
             question.options.forEach((option, index) => {
@@ -481,24 +481,24 @@ window.addEventListener("resize", updatePadding);
         function selectOption(e) {
             const selectedIndex = parseInt(e.target.dataset.index);
             
-            // Bỏ chọn option trước đó nếu có
+            // Deselect previous option if any
             if (selectedOption !== null) {
                 optionsEl.children[selectedOption].classList.remove('selected');
             }
             
-            // Chọn option mới
+            // Select new option
             e.target.classList.add('selected');
             selectedOption = selectedIndex;
             nextBtn.disabled = false;
         }
         
         function nextQuestion() {
-            // Kiểm tra đáp án
+            // Check answer
             if (selectedOption === questions[currentQuestion].answer) {
                 score++;
             }
             
-            // Chuyển sang câu hỏi tiếp theo hoặc kết thúc game
+            // Move to next question or end game
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 loadQuestion();
@@ -512,18 +512,18 @@ window.addEventListener("resize", updatePadding);
             gameScreen.style.display = 'none';
             resultScreen.style.display = 'block';
             
-            // Hiển thị kết quả
-            scoreEl.textContent = `Bạn đã trả lời đúng ${score}/${questions.length} câu`;
+            // Display results
+            scoreEl.textContent = `You answered ${score}/${questions.length} questions correctly`;
             
-            // Đánh giá kết quả
+            // Evaluate results
             if (score < 5) {
-                resultMessageEl.textContent = "Kiến thức của bạn chưa vững về Hưng Yên mới";
+                resultMessageEl.textContent = "Your knowledge about the new Hung Yen needs improvement";
                 resultIconEl.innerHTML = '<i class="fas fa-medal bronze"></i>';
             } else if (score < 10) {
-                resultMessageEl.textContent = "Bạn đã có kiến thức khá ổn về Hưng Yên mới";
+                resultMessageEl.textContent = "You have decent knowledge about the new Hung Yen";
                 resultIconEl.innerHTML = '<i class="fas fa-medal silver"></i>';
             } else {
-                resultMessageEl.textContent = "Thật tuyệt vời! Bạn rất am hiểu về Hưng Yên mới";
+                resultMessageEl.textContent = "Excellent! You know the new Hung Yen very well";
                 resultIconEl.innerHTML = '<i class="fas fa-medal gold"></i>';
             }
         }
@@ -558,7 +558,7 @@ window.addEventListener("resize", updatePadding);
             const percentage = (timeLeft / 15) * 100;
             timerBar.style.width = `${percentage}%`;
             
-            // Đổi màu khi thời gian sắp hết
+            // Change color when time is running out
             if (timeLeft <= 5) {
                 timerBar.style.backgroundColor = '#ff0000';
             } else {
