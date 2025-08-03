@@ -6,6 +6,11 @@
     <title>Mini Game - Hung Yen New Knowledge</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <!-- Pháo hoa -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --primary-red: #d70202;
@@ -79,6 +84,8 @@
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 20px auto;
+            position: relative;
+            z-index: 1;
         }
         
         .start-screen, .game-screen, .result-screen {
@@ -149,15 +156,15 @@
         }
         
         .bronze {
-            color: #cd7f32; /* Bronze color */
+            color: #cd7f32;
         }
         
         .silver {
-            color: #c0c0c0; /* Silver color */
+            color: #c0c0c0;
         }
         
         .gold {
-            color: #ffd700; /* Gold color */
+            color: #ffd700;
         }
         
         .result-message {
@@ -172,6 +179,59 @@
             margin-bottom: 20px;
         }
         
+        /* Prize Form Styles */
+        .prize-form-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .prize-form-container h2 {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .prize-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .prize-option.selected {
+            border-color: var(--primary-red);
+            background-color: #fff3b6;
+        }
+        
+        .prize-option input {
+            margin-right: 10px;
+        }
+        
         @media (max-width: 768px) {
             .game-container {
                 padding: 20px;
@@ -181,43 +241,46 @@
                 font-size: 1.1rem;
             }
         }
-    .iframe-layer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 520px; /* top section only */
-        z-index: 9999;
-        pointer-events: none; /* allow click-through */
-    }
+        
+        .iframe-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 520px;
+            z-index: 9999;
+            pointer-events: none;
+        }
 
-    .iframe-layer iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: block;
-        pointer-events: auto; /* still clickable inside iframe */
-    }
-
-</style>
+        .iframe-layer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            pointer-events: auto;
+        }
+        
+        /* Pháo hoa */
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
 </head>
 <body>
-
     <!-- Top Iframe -->
     <div class="iframe-layer">
         <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
     </div>
-        
-<script>
-function updatePadding() {
-  const screenWidth = window.innerWidth; 
-  const padding = screenWidth * 0.2; 
-  document.body.style.paddingTop = 50 + padding + "px";
-}
 
-window.addEventListener("load", updatePadding);
-window.addEventListener("resize", updatePadding);
-</script>
+    <!-- Pháo hoa -->
+    <canvas id="fireworks" class="fireworks"></canvas>
+
     <div class="container">
         <h2 class="section-title"><i class="fas fa-gamepad"></i> MINI GAME: NEW HUNG YEN KNOWLEDGE</h2>
         <p class="intro-text">Test your knowledge about Hung Yen province after merging with Thai Binh</p>
@@ -227,7 +290,7 @@ window.addEventListener("resize", updatePadding);
             <div class="start-screen">
                 <h3>Game Rules:</h3>
                 <p>- You have 15 seconds to answer each question</p>
-                <p>- There are 10 multiple-choice questions in total</p>
+                <p>- There are 15 multiple-choice questions in total</p>
                 <p>- Results will be evaluated based on correct answers</p>
                 <button id="start-btn" class="btn">Start Game</button>
             </div>
@@ -237,7 +300,7 @@ window.addEventListener("resize", updatePadding);
                 <div class="timer-container">
                     <div class="timer-bar" id="timer-bar"></div>
                 </div>
-                <div class="progress" id="progress">Question 1/10</div>
+                <div class="progress" id="progress">Question 1/15</div>
                 <div class="question" id="question"></div>
                 <div class="options" id="options"></div>
                 <button id="next-btn" class="btn">Next Question</button>
@@ -251,16 +314,76 @@ window.addEventListener("resize", updatePadding);
                 <div class="score" id="score"></div>
                 <div class="result-message" id="result-message"></div>
                 <button id="restart-btn" class="btn">Play Again</button>
+                <button id="leaderboard-btn" class="btn" style="margin-top: 15px;">View Leaderboard</button>
+                
+                <!-- Prize Form (shown only for perfect score) -->
+                <div class="prize-form-container" id="prize-form-container">
+                    <h2>Congratulations on your perfect score!</h2>
+                    <p>Please fill in your information to claim your prize:</p>
+                    <form id="prize-form">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Class (or address)</label>
+                            <input type="text" id="class" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Choose your prize:</label>
+                            <div class="prize-option">
+                                <input type="radio" id="voucher" name="prize" value="20% discount voucher at Dong Yang or Holla" required>
+                                <label for="voucher" style="font-weight: normal;">20% discount voucher at Dong Yang or Holla milk tea shops</label>
+                            </div>
+                            <div class="prize-option">
+                                <input type="radio" id="history-point" name="prize" value="2 bonus points in History">
+                                <label for="history-point" style="font-weight: normal;">2 bonus points in History subject</label>
+                            </div>
+                            <div class="prize-option">
+                                <input type="radio" id="geography-point" name="prize" value="2 bonus points in Geography">
+                                <label for="geography-point" style="font-weight: normal;">2 bonus points in Geography subject</label>
+                            </div>
+                            <div class="prize-option">
+                                <input type="radio" id="ethics-point" name="prize" value="2 bonus points in Ethics">
+                                <label for="ethics-point" style="font-weight: normal;">2 bonus points in Ethics subject</label>
+                            </div>
+                            <div class="prize-option">
+                                <input type="radio" id="union-point" name="prize" value="2 bonus points in Youth Union">
+                                <label for="union-point" style="font-weight: normal;">2 bonus points in Youth Union activities</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Claim Prize</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     
     <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4Hgbp2c--ABVd0X2O2L4Pz5ib2FTER98",
+            authDomain: "giaithuong-fc29e.firebaseapp.com",
+            projectId: "giaithuong-fc29e",
+            storageBucket: "giaithuong-fc29e.appspot.com",
+            messagingSenderId: "517275944502",
+            appId: "1:517275944502:web:99a66ffa1235287feaba97",
+            measurementId: "G-K2VLGT750W"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
         // All available questions
         const allQuestions = [
             {
-                question: "Which province did Hung Yen recently merge with?",
-                options: ["Hai Duong", "Ha Nam", "Thai Binh", "Hanoi"],
+                question: "Which province was Hung Yen newly merged with?",
+                options: ["Hai Duong", "Ha Nam", "Thai Binh", "Ha Noi"],
                 answer: 2
             },
             {
@@ -284,8 +407,8 @@ window.addEventListener("resize", updatePadding);
                 answer: 3
             },
             {
-                question: "What is the traditional festival of Hung Yen?",
-                options: ["Huong Pagoda Festival", "Mother Goddess Temple Festival", "Pho Hien Festival", "Dong Da Mound Festival"],
+                question: "What is the typical festival of Hung Yen?",
+                options: ["Perfume Pagoda Festival", "Mother Temple Festival", "Pho Hien Festival", "Dong Da Mound Festival"],
                 answer: 2
             },
             {
@@ -294,12 +417,12 @@ window.addEventListener("resize", updatePadding);
                 answer: 3
             },
             {
-                question: "What traditional craft is Hung Yen famous for?",
-                options: ["Pottery", "Silk weaving", "Wood carving", "Conical hat making"],
+                question: "What traditional craft is famous in Hung Yen?",
+                options: ["Pottery", "Silk weaving", "Wood carving", "Hat making"],
                 answer: 1
             },
             {
-                question: "Which historical figure was born in Hung Yen?",
+                question: "Which historical figure is from Hung Yen?",
                 options: ["Nguyen Trai", "Chu Van An", "Pham Ngu Lao", "Le Quy Don"],
                 answer: 2
             },
@@ -309,104 +432,104 @@ window.addEventListener("resize", updatePadding);
                 answer: 0
             },
             {
-                question: "Where is Hung Yen located in the Red River Delta?",
-                options: ["Center of Red River Delta", "Coastal area", "Northern mountainous region", "Northwest region"],
-                answer: 0
+                question: "Which of the following is NOT a specialty of Hung Yen?",
+                options: ["Egg lychee", "Fermented pork roll", "Tieu Quan chicken sausage", "Ban soybean paste"],
+                answer: 1
             },
             {
-                question: "When is the famous longan fruit of Hung Yen typically harvested?",
-                options: ["April-May", "June-July", "August-September", "October-November"],
+                question: "How many top scholars (Trang Nguyen) did Hung Yen (new) have in history?",
+                options: ["8", "9", "10", "11"],
                 answer: 2
             },
             {
-                question: "Pho Hien historical site in Hung Yen was known as what in history?",
-                options: ["Capital of Northern Vietnam", "Little Trang An", "Old Quarter of Red River", "Second port city of Vietnam"],
+                question: "During which period was Pho Hien the largest commercial port in Vietnam?",
+                options: ["14th-15th century", "15th-16th century", "16th-17th century", "17th-18th century"],
+                answer: 2
+            },
+            {
+                question: "Which country did Pho Hien trade with?",
+                options: ["Japan", "Egypt", "Mexico", "Canada"],
+                answer: 0
+            },
+            {
+                question: "Which historical figure is known as 'Top Scholar of the Longan Land'?",
+                options: ["Tran Quoc Tuan", "Mac Dinh Chi", "Nguyen Thien Thuat", "Nguyen Trai"],
+                answer: 2
+            },
+            {
+                question: "Which deity is worshipped at Pho Hien Mother Temple?",
+                options: ["Lady of the Realm", "Yang Guifei", "Saint Giong", "Holy Mother of the Nine Heavens"],
+                answer: 1
+            },
+            {
+                question: "How many national relics does Hung Yen (new) have?",
+                options: ["5", "6", "7", "8"],
+                answer: 1
+            },
+            {
+                question: "Which economic region does Hung Yen belong to?",
+                options: ["Northwest", "North Central Coast", "Red River Delta", "Southeast"],
+                answer: 2
+            },
+            {
+                question: "Which traditional village in Hung Yen is famous for incense making?",
+                options: ["Cao Thon village", "Chuong village", "Van Phuc village", "Nu village"],
+                answer: 0
+            },
+            {
+                question: "How many commune-level administrative units does new Hung Yen province have?",
+                options: ["81", "93", "104", "201"],
+                answer: 2
+            },
+            {
+                question: "What is the natural area of Hung Yen?",
+                options: ["2515 km²", "2618 km²", "2451 km²", "2648 km²"],
+                answer: 0
+            },
+            {
+                question: "Where is General Secretary To Lam's hometown?",
+                options: ["Tien Phong commune, An Thi district, Hung Yen province", "Phung Hung commune, Khoai Chau district, Hung Yen province", "Van Lam district, Hung Yen province", "Nghia Tru commune, Van Giang district, Hung Yen province"],
                 answer: 3
             },
             {
-                question: "Who was the famous female general from Hung Yen who participated in the Trung Sisters' uprising?",
-                options: ["Le Chan", "Bat Nan", "Thieu Hoa", "Trung Trac"],
+                question: "What is the capital city of new Hung Yen province?",
+                options: ["Van Giang district", "Hung Yen City", "Khoai Chau district", "Yen My district"],
                 answer: 1
             },
             {
-                question: "Which historical figure is worshipped at Da Hoa Temple in Hung Yen?",
-                options: ["Chu Dong Tu", "Ly Thuong Kiet", "Tran Hung Dao", "Pham Ngu Lao"],
-                answer: 0
-            },
-            {
-                question: "Which river flows through the center of Hung Yen province?",
-                options: ["Red River", "Duong River", "Luoc River", "Cau River"],
-                answer: 0
-            },
-            {
-                question: "Where is the Chu Dong Tu - Tien Dung festival typically held in Hung Yen?",
-                options: ["Van Lam district", "Khoai Chau district", "Yen My district", "An Thi district"],
+                question: "Which type of rice from new Hung Yen has been internationally recognized?",
+                options: ["ST25", "TBR39", "Bac Huong", "IR64"],
                 answer: 1
             },
             {
-                question: "Which traditional cake is a famous specialty of Hung Yen?",
-                options: ["Banh chung Tranh Khuc", "Banh cuon Phu Ly", "Banh rang bua Tho Hoang", "Banh gai Tu Tru"],
-                answer: 2
-            },
-            {
-                question: "Which of these Hung Yen specialties is NOT a traditional craft village product?",
-                options: ["Ban soy sauce", "Longan fruit", "Squid sausage", "Incense"],
-                answer: 2
-            },
-            {
-                question: "Which national highway runs through Hung Yen connecting Hanoi to Hai Phong?",
-                options: ["National Highway 1A", "National Highway 5", "National Highway 18", "National Highway 21"],
+                question: "What is the largest industrial park in Hung Yen?",
+                options: ["VSIP", "Thang Long II", "Dai An", "Pho Noi A"],
                 answer: 1
             },
             {
-                question: "Thai Binh is known as the homeland of which traditional art form?",
-                options: ["Quan ho folk singing", "Cheo opera", "Cai luong opera", "Tuong theater"],
+                question: "New Hung Yen's urban development policy is associated with:",
+                options: ["Spiritual tourism", "Fishing industry", "Agricultural training", "Mechanical industry"],
+                answer: 0
+            },
+            {
+                question: "Which important traffic route connects Hung Yen with other provinces?",
+                options: ["National Highway 1A", "Hanoi - Hai Phong Expressway", "National Highway 14", "North-South Railway"],
                 answer: 1
             },
             {
-                question: "Which major river forms the natural border between Thai Binh and Nam Dinh?",
-                options: ["Day River", "Luoc River", "Tra Ly River", "Red River"],
-                answer: 3
-            },
-            {
-                question: "Which commune in Thai Thuy district, Thai Binh is famous for traditional salt making?",
-                options: ["Diem Dien", "Thuy Hai", "Thuy Xuan", "Thuy Tan"],
-                answer: 0
-            },
-            {
-                question: "Which deity is worshipped at Dong Bang Temple festival in Thai Binh?",
-                options: ["Saint Tran", "King Dinh Tien Hoang", "The Sea King", "Ly Nam De"],
+                question: "How many industrial parks are operating in Hung Yen?",
+                options: ["5", "7", "8", "12"],
                 answer: 2
             },
             {
-                question: "From which century does Keo Pagoda - a famous relic in Thai Binh - date back?",
-                options: ["11th century", "12th century", "17th century", "19th century"],
+                question: "Hung Yen is known as:",
+                options: ["Tea capital", "Land of longan", "City by the river", "Ancestral land"],
+                answer: 1
+            },
+            {
+                question: "What does the name 'Pho Hien' reflect about Hung Yen's historical and cultural characteristics?",
+                options: ["The military role of the region during the Le Dynasty", "The tradition of scholarship and worship of famous people", "A gathering place for merchants, the largest commercial port of the court", "The name of a merchant ship in history"],
                 answer: 2
-            },
-            {
-                question: "Thai Binh is the hometown of which Tran dynasty king?",
-                options: ["Tran Thai Tong", "Tran Nhan Tong", "Tran Canh", "Tran Hung Dao"],
-                answer: 2
-            },
-            {
-                question: "Which beach destination is Thai Binh famous for?",
-                options: ["Dong Chau beach", "Cua Lo beach", "Hai Tien beach", "Sam Son beach"],
-                answer: 0
-            },
-            {
-                question: "What medicinal plant is Thai Binh famous for growing in Quynh Phu district?",
-                options: ["Chrysanthemum", "Jasmine", "Turmeric", "Gymnema sylvestre"],
-                answer: 3
-            },
-            {
-                question: "Which craft village in Thai Binh is famous for traditional sedge mats?",
-                options: ["Hoi village", "Van Phuc village", "Ninh Hiep village", "Dong Ho village"],
-                answer: 0
-            },
-            {
-                question: "What is the primary terrain of Thai Binh?",
-                options: ["Coastal plain", "Midlands", "Low mountains", "Plateau"],
-                answer: 0
             }
         ];
         
@@ -416,7 +539,7 @@ window.addEventListener("resize", updatePadding);
         let timer;
         let timeLeft = 15;
         let selectedOption = null;
-        let questions = []; // Array containing 10 random questions
+        let questions = [];
         
         // DOM Elements
         const startScreen = document.querySelector('.start-screen');
@@ -425,6 +548,7 @@ window.addEventListener("resize", updatePadding);
         const startBtn = document.getElementById('start-btn');
         const nextBtn = document.getElementById('next-btn');
         const restartBtn = document.getElementById('restart-btn');
+        const leaderboardBtn = document.getElementById('leaderboard-btn');
         const questionEl = document.getElementById('question');
         const optionsEl = document.getElementById('options');
         const progressEl = document.getElementById('progress');
@@ -432,26 +556,75 @@ window.addEventListener("resize", updatePadding);
         const scoreEl = document.getElementById('score');
         const resultMessageEl = document.getElementById('result-message');
         const resultIconEl = document.getElementById('result-icon');
+        const prizeFormContainer = document.getElementById('prize-form-container');
+        const prizeForm = document.getElementById('prize-form');
         
         // Start game
         startBtn.addEventListener('click', startGame);
         nextBtn.addEventListener('click', nextQuestion);
         restartBtn.addEventListener('click', restartGame);
+        leaderboardBtn.addEventListener('click', () => {
+            window.location.href = "https://hungyenhoinhapvaphattrien.github.io/en/bxh.html";
+        });
+        
+        // Prize form submission
+        prizeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+                const name = document.getElementById('name').value;
+                const className = document.getElementById('class').value;
+                const phone = document.getElementById('phone').value;
+                const prize = document.querySelector('input[name="prize"]:checked').value;
+                const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+                const language = 'English';
+                
+                // Save to Firestore
+                await db.collection("winners").add({
+                    name: name,
+                    class: className,
+                    phone: phone,
+                    prize: prize,
+                    score: 15,
+                    timestamp: timestamp,
+                    language: language
+                });
+                
+                // Show fireworks
+                fireConfetti();
+                
+                alert("Your information has been recorded. Congratulations on winning the prize!");
+                prizeForm.reset();
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert("An error occurred while saving your information. Please try again!");
+            }
+        });
+        
+        // Prize option selection
+        const prizeOptions = document.querySelectorAll('.prize-option');
+        prizeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const radio = option.querySelector('input[type="radio"]');
+                radio.checked = true;
+                prizeOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
         
         function startGame() {
-            // Randomly select 10 questions from the list
-            questions = getRandomQuestions(10);
+            // Select random 15 questions
+            questions = getRandomQuestions(15);
             
             startScreen.style.display = 'none';
             gameScreen.style.display = 'block';
             currentQuestion = 0;
             score = 0;
+            prizeFormContainer.style.display = 'none';
             loadQuestion();
         }
         
-        // Function to randomly select n questions from the list
         function getRandomQuestions(n) {
-            // Create a copy of allQuestions array to avoid modifying the original
             const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
             return shuffled.slice(0, n);
         }
@@ -481,12 +654,10 @@ window.addEventListener("resize", updatePadding);
         function selectOption(e) {
             const selectedIndex = parseInt(e.target.dataset.index);
             
-            // Deselect previous option if any
             if (selectedOption !== null) {
                 optionsEl.children[selectedOption].classList.remove('selected');
             }
             
-            // Select new option
             e.target.classList.add('selected');
             selectedOption = selectedIndex;
             nextBtn.disabled = false;
@@ -512,19 +683,27 @@ window.addEventListener("resize", updatePadding);
             gameScreen.style.display = 'none';
             resultScreen.style.display = 'block';
             
-            // Display results
+            // Show result
             scoreEl.textContent = `You answered ${score}/${questions.length} questions correctly`;
             
-            // Evaluate results
-            if (score < 5) {
-                resultMessageEl.textContent = "Your knowledge about the new Hung Yen needs improvement";
+            // Evaluate result
+            if (score < 8) {
+                resultMessageEl.textContent = "Your knowledge about new Hung Yen needs improvement";
                 resultIconEl.innerHTML = '<i class="fas fa-medal bronze"></i>';
-            } else if (score < 10) {
-                resultMessageEl.textContent = "You have decent knowledge about the new Hung Yen";
+            } else if (score < 15) {
+                resultMessageEl.textContent = "You have quite good knowledge about new Hung Yen";
                 resultIconEl.innerHTML = '<i class="fas fa-medal silver"></i>';
             } else {
-                resultMessageEl.textContent = "Excellent! You know the new Hung Yen very well";
+                resultMessageEl.textContent = "Excellent! You know new Hung Yen very well";
                 resultIconEl.innerHTML = '<i class="fas fa-medal gold"></i>';
+                // Show prize form for perfect score
+                prizeFormContainer.style.display = 'block';
+                fireConfetti();
+                
+                // Scroll to the prize form
+                setTimeout(() => {
+                    prizeFormContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
             }
         }
         
@@ -558,13 +737,48 @@ window.addEventListener("resize", updatePadding);
             const percentage = (timeLeft / 15) * 100;
             timerBar.style.width = `${percentage}%`;
             
-            // Change color when time is running out
             if (timeLeft <= 5) {
                 timerBar.style.backgroundColor = '#ff0000';
             } else {
                 timerBar.style.backgroundColor = 'var(--primary-red)';
             }
         }
+        
+        // Fireworks effect
+        function fireConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                
+                confetti({
+                    particleCount: 100,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+            }, 250);
+        }
+    </script>
+    
+    <script>
+        function updatePadding() {
+            const screenWidth = window.innerWidth; 
+            const padding = screenWidth * 0.2; 
+            document.body.style.paddingTop = 50 + padding + "px";
+        }
+
+        window.addEventListener("load", updatePadding);
+        window.addEventListener("resize", updatePadding);
     </script>
 </body>
 </html>
