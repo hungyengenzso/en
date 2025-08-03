@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Âm nhạc</title>
+  <title>Music</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -18,25 +18,25 @@
       transition: padding 0.3s ease;
     }
 
-    /* ✅ Iframe trên cùng */
+    /* ✅ Top iframe layer */
     .iframe-layer {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 520px; /* chỉ phần trên cùng */
+      height: 520px; /* top section only */
       z-index: 9999;
-      pointer-events: none; /* cho phép click xuyên */
+      pointer-events: none; /* allow click-through */
     }
     .iframe-layer iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
-      pointer-events: auto; /* vẫn click được bên trong iframe */
+      pointer-events: auto; /* still clickable inside iframe */
     }
 
-    /* Section title giống style bạn gửi */
+    /* Section title matching your style */
     .section-title {
       text-align: center;
       color: var(--primary-red);
@@ -58,7 +58,7 @@
       font-size: 1rem;
     }
 
-    /* Container video */
+    /* Video container */
     .video-section {
       max-width: 1200px;
       margin: 0 auto;
@@ -79,11 +79,11 @@
       padding: 10px;
     }
 
-    /* ✅ YouTube giữ tỉ lệ 16:9 với padding-bottom */
+    /* ✅ YouTube maintaining 16:9 aspect ratio with padding-bottom */
     .video-embed {
       position: relative;
       width: 40%;
-      padding-bottom: 22.5%; /* 16:9 cho 40% width */
+      padding-bottom: 22.5%; /* 16:9 for 40% width */
       height: 0;
     }
     .video-embed iframe {
@@ -112,7 +112,7 @@
       line-height: 1.5;
     }
 
-    /* Responsive: mobile xếp dọc */
+    /* Responsive: mobile stacks vertically */
     @media (max-width: 768px) {
       .video-row {
         flex-direction: column;
@@ -132,33 +132,33 @@
 </head>
 <body>
 
-  <!-- ✅ Iframe trên đỉnh -->
+  <!-- ✅ Top iframe layer -->
   <div class="iframe-layer">
-    <iframe src="https://hungyenhoinhapvaphattrien.github.io/vi/top"></iframe>
+    <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
   </div>
 
   <!-- ✅ Video Section -->
   <section class="video-section">
-    <h2 class="section-title"><i class="fa-solid fa-music"></i> ÂM NHẠC</h2>
-    <p class="intro-text">Xem các bài hát, danh sách nhạc hay của Hưng Yên - Thái Bình</p>
+    <h2 class="section-title"><i class="fa-solid fa-music"></i> MUSIC</h2>
+    <p class="intro-text">Watch songs and great playlists from Hung Yen - Thai Binh</p>
 
-    <!-- Hàng 1 -->
+    <!-- Row 1 -->
     <div class="video-row">
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/wvfVYX2vTBk" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Nắng ấm quê hương</h3>
+        <h3>Sunshine of the Homeland</h3>
       </div>
     </div>
 
-    <!-- Hàng 2 -->
+    <!-- Row 2 -->
     <div class="video-row">
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/5Jm9g0YdGDU" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Thái Bình Mồ Hôi Rơi</h3>
+        <h3>Thai Binh - Falling Sweat</h3>
       </div>
     </div>
 
@@ -167,7 +167,7 @@
         <iframe src="https://www.youtube.com/embed/videoseries?list=PLbOLhUaIvN3i5romS97Jq1jfJjsCrryYF" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>CA KHÚC VỀ HƯNG YÊN</h3>
+        <h3>SONGS ABOUT HUNG YEN</h3>
       </div>
     </div>
 
@@ -176,7 +176,7 @@
         <iframe src="https://www.youtube.com/embed/H5415v-3rpE" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Nhạc hưng yên tuyển chọn</h3>
+        <h3>Selected Hung Yen Music</h3>
       </div>
     </div>
 
@@ -185,7 +185,7 @@
         <iframe src="https://www.youtube.com/embed/5AeZfTOOQEg" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>CA KHÚC HAY THÁI BÌNH</h3>
+        <h3>GREAT SONGS ABOUT THAI BINH</h3>
       </div>
     </div>
 
@@ -194,7 +194,7 @@
         <iframe src="https://www.youtube.com/embed/XCZKLvQoJFs" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>BÀI HÁT HAY MỚI NHẤT VỀ THÁI BÌNH</h3>
+        <h3>NEWEST GREAT SONGS ABOUT THAI BINH</h3>
       </div>
     </div>
     
@@ -203,12 +203,12 @@
         <iframe src="https://www.youtube.com/embed/ZLRDTjI8ssY" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>10 CA KHÚC HAY CÓ CHỌN LỌC VỀ HƯNG YÊN</h3>
+        <h3>10 SELECTED GREAT SONGS ABOUT HUNG YEN</h3>
       </div>
     </div>
   </section>
 
-  <!-- ✅ Script căn padding -->
+  <!-- ✅ Padding adjustment script -->
   <script>
     function updatePadding() {
       const screenWidth = window.innerWidth; 
