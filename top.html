@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cổng thông tin điện tử Tỉnh Hưng Yên</title>
+  <title>Hung Yen Province E-Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -85,7 +85,7 @@
       gap: 10px;
     }
 
-    /* Thanh tìm kiếm ẩn */
+    /* Hidden search bar */
     .search-box {
       position: relative;
       display: none;
@@ -96,7 +96,7 @@
       border: none;
     }
 
-    /* Gợi ý */
+    /* Suggestions */
     .suggestions {
       position: absolute;
       top: 30px;
@@ -125,7 +125,7 @@
       border: 1px solid #fff;
     }
 
-    /* Banner dưới */
+    /* Bottom banner */
     .banner {
       width: 100%;
     }
@@ -166,16 +166,16 @@
     }
   </style>
 <script>
-    // Gửi chiều cao thực tế của trang về trang cha
+    // Send actual page height to parent page
     function sendHeightToParent() {
         const height = document.body.scrollHeight;
         window.parent.postMessage({ height: height }, '*');
     }
 
-    // Gửi chiều cao ngay khi trang tải xong
+    // Send height when page finishes loading
     window.addEventListener('load', sendHeightToParent);
 
-    // Theo dõi thay đổi chiều cao (nếu trang động)
+    // Monitor height changes (for dynamic pages)
     let lastHeight = 0;
     function checkHeightChange() {
         const currentHeight = document.body.scrollHeight;
@@ -190,62 +190,62 @@
 </head>
 <body>
 
-  <!-- Bìa trên cùng (slider không cắt ảnh) -->
+  <!-- Top banner (slider without cropping) -->
   <div class="header">
-    <img src="https://hungyenhoinhapvaphattrien.github.io/vi/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(10).png" class="active">
-    <img src="https://hungyenhoinhapvaphattrien.github.io/vi/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(11).png">
-    <img src="https://hungyenhoinhapvaphattrien.github.io/vi/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(12).png">
+    <img src="https://hungyenhoinhapvaphattrien.github.io/en/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(10).png" class="active">
+    <img src="https://hungyenhoinhapvaphattrien.github.io/en/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(11).png">
+    <img src="https://hungyenhoinhapvaphattrien.github.io/en/DU%20L%E1%BB%8ACH%20V%C3%80%20DI%20S%E1%BA%A2N%20(12).png">
   </div>
 
   <!-- Menu -->
   <nav>
     <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
     <ul>
-      <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/home" target="_blank"><i class="fa fa-home"></i></a></li>
+      <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/home" target="_blank"><i class="fa fa-home"></i></a></li>
       <li>
-        <a href="javascript:void(0)">Tổng quát</a>
+        <a href="javascript:void(0)">Overview</a>
         <ul>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/gioithieu" target="_blank">Giới thiệu</a></li>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/nhanvat" target="_blank">Nhân vật</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/gioithieu" target="_blank">Introduction</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/nhanvat" target="_blank">Notable Figures</a></li>
         </ul>
       </li>
-      <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/kinhte" target="_blank">Kinh tế</a></li>
+      <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/kinhte" target="_blank">Economy</a></li>
       <li>
-        <a href="javascript:void(0)">Khám phá Hưng Yên</a>
+        <a href="javascript:void(0)">Explore Hung Yen</a>
         <ul>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/dulich" target="_blank">Du lịch</a></li>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/dsvls" target="_blank">Di sản & Lịch sử</a></li>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/atvln" target="_blank">Ẩm thực & Làng nghề</a></li>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/minigame" target="_blank">MiniGame</a></li>
-          <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/amnhac" target="_blank">Âm nhạc</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/dulich" target="_blank">Tourism</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/dsvls" target="_blank">Heritage & History</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/atvln" target="_blank">Cuisine & Craft Villages</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/minigame" target="_blank">MiniGame</a></li>
+          <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/amnhac" target="_blank">Music</a></li>
         </ul>
       </li>
-      <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/thuvienmedia" target="_blank">Thư viện Media</a></li>
-      <li><a href="https://hungyenhoinhapvaphattrien.github.io/vi/lienhe" target="_blank">Liên hệ</a></li>
+      <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/thuvienmedia" target="_blank">Media Library</a></li>
+      <li><a href="https://hungyenhoinhapvaphattrien.github.io/en/lienhe" target="_blank">Contact</a></li>
     </ul>
 
     <div class="right-section">
       <i class="fas fa-search" id="search-icon" style="cursor:pointer;"></i>
       <div class="search-box" id="search-box">
-        <input type="text" id="search" placeholder="Tìm kiếm...">
+        <input type="text" id="search" placeholder="Search...">
         <div id="suggestions" class="suggestions"></div>
       </div>
       <div class="flags">
-        <img src="https://hungyenhoinhapvaphattrien.github.io/vi/vn.png" alt="VN">
-        <img src="https://hungyenhoinhapvaphattrien.github.io/vi/en.png" alt="EN">
+        <img src="https://hungyenhoinhapvaphattrien.github.io/en/vn.png" alt="VN">
+        <img src="https://hungyenhoinhapvaphattrien.github.io/en/en.png" alt="EN">
       </div>
     </div>
   </nav>
 
-  <!-- Banner dưới -->
+  <!-- Bottom banner -->
   <div class="banner">
-    <img src="https://hungyenhoinhapvaphattrien.github.io/vi/BAONEW.png" alt="Banner">
+    <img src="https://hungyenhoinhapvaphattrien.github.io/en/BAONEW.png" alt="Banner">
   </div>
 
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- JS đổi ảnh bìa -->
+  <!-- Banner image rotation JS -->
   <script>
     const images = document.querySelectorAll('.header img');
     let current = 0;
@@ -262,7 +262,7 @@
       menu.classList.toggle('show');
     });
 
-    // Ẩn/hiện thanh tìm kiếm
+    // Show/hide search bar
     const searchIcon = document.getElementById('search-icon');
     const searchBox = document.getElementById('search-box');
     searchIcon.addEventListener('click', () => {
@@ -273,26 +273,26 @@
       }
     });
 
-    // Dữ liệu menu cho gợi ý
+    // Menu data for suggestions
     const searchInput = document.getElementById('search');
     const suggestionsBox = document.getElementById('suggestions');
 
     const menuItems = [
-      { name: "Trang chủ", link: "https://hungyenhoinhapvaphattrien.github.io/vi/home" },
-      { name: "Giới thiệu", link: "https://hungyenhoinhapvaphattrien.github.io/vi/gioithieu" },
-      { name: "Lãnh đạo", link: "https://hungyenhoinhapvaphattrien.github.io/vi/lanhdao" },
-      { name: "Nhân vật", link: "https://hungyenhoinhapvaphattrien.github.io/vi/nhanvat" },
-      { name: "Kinh tế", link: "#" },
-      { name: "Du lịch", link: "https://hungyenhoinhapvaphattrien.github.io/vi/dulich" },
-      { name: "Di sản & Lịch sử", link: "https://hungyenhoinhapvaphattrien.github.io/vi/dsvls" },
-      { name: "Ẩm thực & Làng nghề", link: "https://hungyenhoinhapvaphattrien.github.io/vi/atvln" },
-      { name: "MiniGame", link: "https://hungyenhoinhapvaphattrien.github.io/vi/minigame" },
-      { name: "Âm nhạc", link: "https://hungyenhoinhapvaphattrien.github.io/vi/amnhac" },
-      { name: "Thư viện Media", link: "https://hungyenhoinhapvaphattrien.github.io/vi/thuvienmedia" },
-      { name: "Liên hệ", link: "https://hungyenhoinhapvaphattrien.github.io/vi/lienhe" },
+      { name: "Home", link: "https://hungyenhoinhapvaphattrien.github.io/en/home" },
+      { name: "Introduction", link: "https://hungyenhoinhapvaphattrien.github.io/en/gioithieu" },
+      { name: "Leaders", link: "https://hungyenhoinhapvaphattrien.github.io/en/lanhdao" },
+      { name: "Notable Figures", link: "https://hungyenhoinhapvaphattrien.github.io/en/nhanvat" },
+      { name: "Economy", link: "#" },
+      { name: "Tourism", link: "https://hungyenhoinhapvaphattrien.github.io/en/dulich" },
+      { name: "Heritage & History", link: "https://hungyenhoinhapvaphattrien.github.io/en/dsvls" },
+      { name: "Cuisine & Craft Villages", link: "https://hungyenhoinhapvaphattrien.github.io/en/atvln" },
+      { name: "MiniGame", link: "https://hungyenhoinhapvaphattrien.github.io/en/minigame" },
+      { name: "Music", link: "https://hungyenhoinhapvaphattrien.github.io/en/amnhac" },
+      { name: "Media Library", link: "https://hungyenhoinhapvaphattrien.github.io/en/thuvienmedia" },
+      { name: "Contact", link: "https://hungyenhoinhapvaphattrien.github.io/en/lienhe" },
     ];
 
-    // Hiển thị gợi ý khi gõ
+    // Show suggestions when typing
     searchInput.addEventListener('input', () => {
       const keyword = searchInput.value.toLowerCase().trim();
       suggestionsBox.innerHTML = '';
@@ -317,7 +317,7 @@
       suggestionsBox.style.display = 'block';
     });
 
-    // Ẩn gợi ý khi click ra ngoài
+    // Hide suggestions when clicking outside
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.search-box')) {
         suggestionsBox.style.display = 'none';
@@ -331,19 +331,17 @@
         parent.postMessage({ iframeHeight: height }, "*");
     }
 
-    // Gửi mỗi 0.1s hoặc khi resize
+    // Send every 0.1s or when resizing
     setInterval(sendHeight, 100);
     window.addEventListener('resize', sendHeight);
     window.addEventListener('load', sendHeight);
 
-
-
-  // Click cờ VN -> mở ở tab mới
+  // Click VN flag -> open in new tab
   document.querySelector('.flags img[alt="VN"]').addEventListener('click', () => {
     window.open("https://hungyenhoinhapvaphattrien.github.io/vi/home", "_blank");
   });
 
-  // Click cờ EN -> mở ở tab mới
+  // Click EN flag -> open in new tab
   document.querySelector('.flags img[alt="EN"]').addEventListener('click', () => {
     window.open("https://hungyenhoinhapvaphattrien.github.io/en/home", "_blank");
   });
