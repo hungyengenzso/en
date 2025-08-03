@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bản đồ khu công nghiệp</title>
+  <title>Industrial Zone Map</title>
   <style>
     body {
       margin: 0;
@@ -11,15 +11,15 @@
       font-family: sans-serif;
     }
 
-    /* Iframe lớp trên cùng */
+    /* Top layer iframe */
     .iframe-layer {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 520px; /* chỉ phần trên cùng */
+      height: 520px; /* top section only */
       z-index: 9999;
-      pointer-events: none; /* cho phép click xuyên */
+      pointer-events: none; /* allow click-through */
     }
 
     .iframe-layer iframe {
@@ -27,10 +27,10 @@
       height: 100%;
       border: none;
       display: block;
-      pointer-events: auto; /* vẫn click được bên trong iframe */
+      pointer-events: auto; /* still clickable inside iframe */
     }
 
-    /* Phần chứa ảnh */
+    /* Image container */
     .image-container {
       display: flex;
       flex-direction: column;
@@ -40,32 +40,32 @@
     }
 
     .image-container img {
-      width: 90%;           /* Tối đa 70% chiều rộng web */
-      height: auto;         /* Giữ tỉ lệ gốc ảnh */
-      max-width: 1000px;    /* Giới hạn tối đa nếu ảnh quá lớn */
+      width: 90%;           /* Maximum 70% of web width */
+      height: auto;         /* Maintain original aspect ratio */
+      max-width: 1000px;    /* Maximum limit if image is too large */
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: block;
     }
 
-    /* Tránh ảnh bị đè lên iframe */
+    /* Prevent images from overlapping iframe */
     body {
-      padding-top: 200px; /* sẽ được JS cập nhật */
+      padding-top: 200px; /* will be updated by JS */
       transition: padding 0.3s ease;
     }
   </style>
 </head>
 <body>
 
-  <!-- Iframe trên cùng -->
+  <!-- Top iframe -->
   <div class="iframe-layer">
-    <iframe src="https://hungyenhoinhapvaphattrien.github.io/vi/top"></iframe>
+    <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
   </div>
 
-  <!-- 2 ảnh nằm trên – dưới -->
+  <!-- Two images stacked vertically -->
   <div class="image-container">
-    <img src="https://idpvn.com/wp-content/uploads/2022/09/Ba%CC%89n-do%CC%82%CC%80-KCN-Tha%CC%81i-Bi%CC%80nh.jpeg" alt="Ảnh 1">
-    <img src="https://idpvn.com/wp-content/uploads/2022/09/Ba%CC%89n-do%CC%82%CC%80-KCN-Hu%CC%9Bng-Ye%CC%82n.jpeg" alt="Ảnh 2">
+    <img src="https://idpvn.com/wp-content/uploads/2022/09/Ba%CC%89n-do%CC%82%CC%80-KCN-Tha%CC%81i-Bi%CC%80nh.jpeg" alt="Map 1">
+    <img src="https://idpvn.com/wp-content/uploads/2022/09/Ba%CC%89n-do%CC%82%CC%80-KCN-Hu%CC%9Bng-Ye%CC%82n.jpeg" alt="Map 2">
   </div>
 
   <script>
