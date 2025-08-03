@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Nổi Bật - Hưng Yên Mới</title>
+  <title>Featured Videos - New Hung Yen</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -18,25 +18,25 @@
       transition: padding 0.3s ease;
     }
 
-    /* ✅ Iframe trên cùng */
+    /* ✅ Top iframe */
     .iframe-layer {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 520px; /* chỉ phần trên cùng */
+      height: 520px; /* top section only */
       z-index: 9999;
-      pointer-events: none; /* cho phép click xuyên */
+      pointer-events: none; /* allow click-through */
     }
     .iframe-layer iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
-      pointer-events: auto; /* vẫn click được bên trong iframe */
+      pointer-events: auto; /* clickable inside iframe */
     }
 
-    /* Section title giống style bạn gửi */
+    /* Section title matching your style */
     .section-title {
       text-align: center;
       color: var(--primary-red);
@@ -58,7 +58,7 @@
       font-size: 1rem;
     }
 
-    /* Container video */
+    /* Video container */
     .video-section {
       max-width: 1200px;
       margin: 0 auto;
@@ -79,11 +79,11 @@
       padding: 10px;
     }
 
-    /* ✅ YouTube giữ tỉ lệ 16:9 với padding-bottom */
+    /* ✅ YouTube 16:9 aspect ratio with padding-bottom */
     .video-embed {
       position: relative;
       width: 40%;
-      padding-bottom: 22.5%; /* 16:9 cho 40% width */
+      padding-bottom: 22.5%; /* 16:9 for 40% width */
       height: 0;
     }
     .video-embed iframe {
@@ -112,7 +112,7 @@
       line-height: 1.5;
     }
 
-    /* Responsive: mobile xếp dọc */
+    /* Responsive: mobile vertical layout */
     @media (max-width: 768px) {
       .video-row {
         flex-direction: column;
@@ -132,35 +132,35 @@
 </head>
 <body>
 
-  <!-- ✅ Iframe trên đỉnh -->
+  <!-- ✅ Top iframe -->
   <div class="iframe-layer">
-    <iframe src="https://hungyenhoinhapvaphattrien.github.io/vi/top"></iframe>
+    <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
   </div>
 
   <!-- ✅ Video Section -->
   <section class="video-section">
-    <h2 class="section-title"><i class="fas fa-video"></i> VIDEO NỔI BẬT</h2>
-    <p class="intro-text">Xem các video ấn tượng về Hưng Yên mới</p>
+    <h2 class="section-title"><i class="fas fa-video"></i> FEATURED VIDEOS</h2>
+    <p class="intro-text">Watch impressive videos about the new Hung Yen province</p>
 
-    <!-- Hàng 1 -->
+    <!-- Row 1 -->
     <div class="video-row">
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/uOrCj13MWMU" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Video giới thiệu gạo Thái Bình bằng tiếng Anh</h3>
-        <p>Giới thiệu đặc sản gạo Thái Bình bằng tiếng Anh ...</p>
+        <h3>Introduction to Thai Binh rice in English</h3>
+        <p>Showcasing the specialty rice of Thai Binh in English...</p>
       </div>
     </div>
 
-    <!-- Hàng 2 -->
+    <!-- Row 2 -->
     <div class="video-row">
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/FMVM9QovWkg" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>6 vị tướng quê ở Thái Bình</h3>
-        <p>6 vị tướng nổi tiếng của Việt Nam có quê ở Thái Bình (nay là Hưng Yên)...</p>
+        <h3>6 generals from Thai Binh</h3>
+        <p>6 famous Vietnamese generals originally from Thai Binh (now part of Hung Yen)...</p>
       </div>
     </div>
 
@@ -169,8 +169,8 @@
         <iframe src="https://www.youtube.com/embed/z5GwjIJKjZA" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Hưng Yên và sức sống</h3>
-        <p>Mô tả ngắn gọn về video này. Bạn có thể giới thiệu nội dung hoặc giải thích thông tin chính.</p>
+        <h3>Hung Yen and its vitality</h3>
+        <p>A brief description of this video. You can introduce the content or explain key information.</p>
       </div>
     </div>
 
@@ -179,8 +179,8 @@
         <iframe src="https://www.youtube.com/embed/z5GwjIJKjZA" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Thông tin về tỉnh Hưng Yên mới</h3>
-        <p>Tỉnh Hưng Yên mới là tỉnh được sáp nhập từ Hưng Yên và Thái Bình với diện tích...</p>
+        <h3>Information about the new Hung Yen province</h3>
+        <p>The new Hung Yen province was formed by merging Hung Yen and Thai Binh with an area of...</p>
       </div>
     </div>
 
@@ -189,8 +189,8 @@
         <iframe src="https://www.youtube.com/embed/WZB5EfM1iYU" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Hưng Yên có những nhân vật nổi tiếng nào?</h3>
-        <p>13 nhân vật tiêu biểu của Hưng Yên...</p>
+        <h3>Who are the famous figures from Hung Yen?</h3>
+        <p>13 notable personalities from Hung Yen...</p>
       </div>
     </div>
 
@@ -199,8 +199,8 @@
         <iframe src="https://www.youtube.com/embed/9eP-kUslraA" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Video về Triệu Quang Phục</h3>
-        <p>Triệu Quang Phục - Vị vua duy nhất người Hưng Yên...</p>
+        <h3>Video about Trieu Quang Phuc</h3>
+        <p>Trieu Quang Phuc - The only king from Hung Yen...</p>
       </div>
     </div>
     
@@ -209,13 +209,13 @@
         <iframe src="https://www.youtube.com/embed/HWFKz7tK2Ik" allowfullscreen></iframe>
       </div>
       <div class="video-text">
-        <h3>Thái Bình có những nhân vật tiêu biểu nào?</h3>
-        <p>9 nhân vật tiêu biểu của Thái Bình...</p>
+        <h3>Who are the notable figures from Thai Binh?</h3>
+        <p>9 prominent figures from Thai Binh...</p>
       </div>
     </div>
   </section>
 
-  <!-- ✅ Script căn padding -->
+  <!-- ✅ Padding adjustment script -->
   <script>
     function updatePadding() {
       const screenWidth = window.innerWidth; 
