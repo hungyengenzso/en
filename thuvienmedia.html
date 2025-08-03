@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Viện Media - Hưng Yên Mới</title>
+    <title>Media Library - Hung Yen News</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -82,7 +82,7 @@
             object-fit: cover;
             transition: none;
         }
-        /* Mobile: giảm chiều cao ảnh */
+        /* Mobile: reduce image height */
         @media (max-width: 768px) {
             .economy-img {
                 height: 110px;
@@ -182,9 +182,9 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 510px; /* chỉ phần trên cùng */
+        height: 510px; /* top section only */
         z-index: 9999;
-        pointer-events: none; /* cho phép click xuyên */
+        pointer-events: none; /* allow click-through */
     }
 
     .iframe-layer iframe {
@@ -192,16 +192,15 @@
         height: 100%;
         border: none;
         display: block;
-        pointer-events: auto; /* vẫn click được bên trong iframe */
+        pointer-events: auto; /* still clickable inside iframe */
     }
-
-</style>
+    </style>
 </head>
 <body>
 
-    <!-- Iframe trên cùng -->
+    <!-- Top iframe -->
     <div class="iframe-layer">
-        <iframe src="https://hungyenhoinhapvaphattrien.github.io/vi/top"></iframe>
+        <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
     </div>
         
 <script>
@@ -217,40 +216,39 @@ window.addEventListener("resize", updatePadding);
 
     <section class="economy-portal">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-photo-video"></i> THƯ VIỆN MEDIA</h2>
-            <p class="intro-text">Khám phá kho tư liệu đa dạng về tỉnh Hưng Yên mới qua các hình thức truyền thông khác nhau</p>
+            <h2 class="section-title"><i class="fas fa-photo-video"></i> MEDIA LIBRARY</h2>
+            <p class="intro-text">Explore diverse resources about the new Hung Yen province through different media formats</p>
 
             <div class="economy-options">
-                <!-- Album ảnh -->
+                <!-- Photo Album -->
                 <div class="economy-card">
                     <div class="economy-img">
-                        <img src="https://scontent.iocvnpt.com/resources/portal/Images/TBH/ttxuctien/ck6_606095991.jpg" alt="Album ảnh">
+                        <img src="https://scontent.iocvnpt.com/resources/portal/Images/TBH/ttxuctien/ck6_606095991.jpg" alt="Photo Album">
                     </div>
                     <div class="economy-icon"><i class="fas fa-images"></i></div>
-                    <h3 class="economy-title">ALBUM ẢNH</h3>
-                    <a href="https://hungyenhoinhapvaphattrien.github.io/vi/anh" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Khám phá</a>
+                    <h3 class="economy-title">PHOTO ALBUM</h3>
+                    <a href="https://hungyenhoinhapvaphattrien.github.io/en/anh" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Explore</a>
                 </div>
 
-                <!-- 360 độ -->
+                <!-- 360 Experience -->
                 <div class="economy-card">
                     <div class="economy-img">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/V%C4%83n_mi%E1%BA%BFu_X%C3%ADch_%C4%90%E1%BA%B1ng_02.JPG/1200px-V%C4%83n_mi%E1%BA%BFu_X%C3%ADch_%C4%90%E1%BA%B1ng_02.JPG" alt="360 độ">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/V%C4%83n_mi%E1%BA%BFu_X%C3%ADch_%C4%90%E1%BA%B1ng_02.JPG/1200px-V%C4%83n_mi%E1%BA%BFu_X%C3%ADch_%C4%90%E1%BA%B1ng_02.JPG" alt="360 Experience">
                     </div>
                     <div class="economy-icon"><i class="fas fa-globe"></i></div>
-                    <h3 class="economy-title">TRẢI NGHIỆM 360°</h3>
-                    <a href="https://hungyenhoinhapvaphattrien.github.io/vi/360" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Khám phá</a>
+                    <h3 class="economy-title">360° EXPERIENCE</h3>
+                    <a href="https://hungyenhoinhapvaphattrien.github.io/en/360" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Explore</a>
                 </div>
 
-                <!-- Video clip -->
+                <!-- Video Clips -->
                 <div class="economy-card">
                     <div class="economy-img">
-                        <img src="https://mia.vn/media/uploads/blog-du-lich/chua-chuong-01-1698070246.jpg" alt="Video clip">
+                        <img src="https://mia.vn/media/uploads/blog-du-lich/chua-chuong-01-1698070246.jpg" alt="Video Clips">
                     </div>
                     <div class="economy-icon"><i class="fas fa-video"></i></div>
-                    <h3 class="economy-title">VIDEO CLIP</h3>
-                    <a href="https://hungyenhoinhapvaphattrien.github.io/vi/video" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Khám phá</a>
+                    <h3 class="economy-title">VIDEO CLIPS</h3>
+                    <a href="https://hungyenhoinhapvaphattrien.github.io/en/video" class="btn-economy" target="_blank"><i class="fas fa-arrow-right"></i> Explore</a>
                 </div>
-
             </div>
         </div>
     </section>
