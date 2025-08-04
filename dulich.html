@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tourism - Hung Yen & Thai Binh</title>
+    <title>Travel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -434,6 +434,62 @@
             margin-top: 15px;
         }
         
+        /* Video Gallery */
+        .video-gallery {
+            margin: 30px 0;
+        }
+        
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .video-wrapper {
+            flex: 1 1 45%;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-wrapper:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-wrapper iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .load-more-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 25px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .load-more-btn:hover {
+            background-color: #b00000;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .tour-card, .tip-card {
                 flex: 1 1 100%;
@@ -464,6 +520,10 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .video-wrapper {
+                flex: 1 1 100%;
+            }
         }
         
         .iframe-layer {
@@ -473,7 +533,7 @@
             width: 100%;
             height: 520px; /* top section only */
             z-index: 9999;
-            pointer-events: none; /* allow click-through */
+            pointer-events: none; /* allow clicks to pass through */
         }
 
         .iframe-layer iframe {
@@ -483,11 +543,12 @@
             display: block;
             pointer-events: auto; /* still clickable inside iframe */
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Top iframe layer -->
+    <!-- Top iframe -->
     <div class="iframe-layer">
         <iframe src="https://hungyenhoinhapvaphattrien.github.io/en/top"></iframe>
     </div>
@@ -496,7 +557,7 @@
 function updatePadding() {
   const screenWidth = window.innerWidth; 
   const padding = screenWidth * 0.2; 
-  document.body.style.paddingTop = 50 + padding + "px";
+  document.body.style.paddingTop = 100 + padding + "px";
 }
 
 window.addEventListener("load", updatePadding);
@@ -505,18 +566,155 @@ window.addEventListener("resize", updatePadding);
     
     <section id="about">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-water"></i> RED RIVER SPIRITUAL TOUR</h2>
-            <p class="intro-text">The Red River spiritual tour is a cultural-religious journey connecting the "sacred lands of talented people" along the mother river of Vietnam's wet rice civilization</p>
+            <h2 class="section-title"><i class="fas fa-water"></i> SPIRITUAL TOUR INTRODUCTION</h2>
+            <p class="intro-text">The Red River spiritual tourism route is a cultural-spiritual journey connecting the "sacred lands of talented people" along the mother river of Vietnam's wet rice civilization</p>
+            
+            <!-- Video Gallery -->
+            <div class="video-gallery">
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1ATSG9nkYUQcndWXUM7esive4B_3sx6l8/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/19ITl5g1XrGWm_dFScTvKZ-OGiqQlYqKN/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos1">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1i47UscQrqe082YRbhVP6GV2SDUEnIoLD/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1WD09sVeb_R29okN3MAfY2Bk8CCAOl0io/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos2">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1brqgZW1U0kVtTV74s2O04P1tU7AsySv6/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1lhSFg2NdysbgLSm8HZkjlHoCTSvaagaK/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos3">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/14biri8cdaXsSJzc1CiindWtYQd6GfGvb/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1GzrZWwJQyq0xtaoji9-zexiRfmk6v9EA/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos4">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1doMrkJOb0xziO0n3arVu0FfoxaDc4vmf/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1S0C2-oCWkzjImY3MnP4QDraDr1Tu1zjh/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos5">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1U9r46y9qGDZsGxOtPZ5qMTqc0f0E5-su/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/14QSX9VspTeIP8X-IxvKooHtRtu7xwlnT/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos6">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/18nJLBJvzhF__YHPydYoA49Nv-32HYaTA/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1A-ZiipYJ5Y-Ii4QaTUZVpMo47O35POVA/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos7">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1Kefye5L8ketO38CpXl-xRX6T1Hg5YeJc/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1JXIRGU0v8w18nrd1cNQ2uVVixL1mAfNS/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos8">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1Xk5-yr0_yah7f2yc7GAah7HevLeTr2Vu/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/12APnPuHZ99vqFOWXp3E6vUjRUcoBLv4Q/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos9">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1ASCS8Wau0INiiLM24B7bfZTxoQCiTOjj/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1GblhW5Eu4EAmcvK3_DsjTxYTxXo7F30K/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos10">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1cFdfFnGehP1jd6TcOEkP9G9oL4RPB254/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/19xBBgIsQUsQQpCNWrgikKm1m_nRJ_oej/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos11">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/15fMuCvXAe09RXmKNHzyR5QnmqIbhNrKI/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/11_qx_mkxAwYYAFBu4A1RHmSVfFDwCcDH/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos12">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1e7XlH2iSNVynnrffZ4Z00M0W3Z24vib5/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/12x27qJ_v-5RXsrlJOcf6Uaa3f5ndsDxR/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos13">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1C3rXHWnkzMkDcytPIlOtmwDvSpczzL-e/preview" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1iWkzwNOzwmYLNnG97dSRyUZR_GQzpUQF/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <div class="video-container hidden" id="moreVideos14">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1sUcwA1_T2SaxIBH_PMp-irnmfFqG19lj/preview" allowfullscreen></iframe>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" onclick="loadMoreVideos()">View more videos</button>
+            </div>
             
             <div class="info-row">
                 <img src="https://bvhttdl.mediacdn.vn/291773308735864832/2024/7/10/71478quanthekhudothivinhomesoceanparkvangiangdiemdenmoicuadulichhungyen17081009-1720576595779-1720576597601122730186.jpeg" alt="Cultural significance">
                 <div class="info-content">
-                    <h3>CULTURAL & SPIRITUAL SIGNIFICANCE</h3>
-                    <p>The Red River spiritual tour has profound cultural meaning, connecting historical relics and ancient temples along the mighty Red River. This journey is not just a trip but also an opportunity for visitors to learn about Vietnamese history, culture and beliefs.</p>
+                    <h3>CULTURAL AND SPIRITUAL SIGNIFICANCE</h3>
+                    <p>The Red River spiritual tourism route holds profound cultural significance, connecting historical relics and ancient temples along the majestic Red River. This journey is not just a trip but also an opportunity for visitors to learn about the history, culture and beliefs of the Vietnamese people.</p>
                     <ul>
-                        <li>Preserve and promote traditional spiritual cultural values</li>
-                        <li>Connect sacred lands bearing the mark of "sacred lands of talented people"</li>
-                        <li>Opportunity to explore spiritual depth and the moral of "remembering the source"</li>
+                        <li>Preserving, maintaining and promoting traditional spiritual cultural values</li>
+                        <li>Connecting sacred lands bearing the mark of "sacred lands of talented people"</li>
+                        <li>Opportunity to explore spiritual depth and the moral of "remembering the source when drinking water"</li>
                     </ul>
                 </div>
             </div>
@@ -526,24 +724,24 @@ window.addEventListener("resize", updatePadding);
                     <h3 class="value-title">HISTORICAL SIGNIFICANCE - NATIONAL IDENTITY</h3>
                     <div class="value-content">
                         <ul>
-                            <li>Journey through major cultural regions of the Red River Delta</li>
-                            <li>Arouse national pride, affirm Vietnamese cultural identity</li>
-                            <li>Educate young generations about heritage preservation</li>
-                            <li>Recreate the development history of the Northern Delta</li>
-                            <li>Connect important historical relics from Hung Kings period to present</li>
+                            <li>Journey through major cultural regions of the Red River delta</li>
+                            <li>Awakening national pride, affirming Vietnamese cultural identity</li>
+                            <li>Educating the young generation about heritage preservation</li>
+                            <li>Recreating the development history of the Northern Delta region</li>
+                            <li>Connecting important historical relics from the Hung Kings period to present</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="value-item">
-                    <h3 class="value-title">ECONOMIC & SOCIAL SIGNIFICANCE</h3>
+                    <h3 class="value-title">ECONOMIC AND SOCIAL SIGNIFICANCE</h3>
                     <div class="value-content">
                         <ul>
-                            <li>Regional tourism linkage model between localities</li>
-                            <li>Create jobs for local people</li>
-                            <li>Call for private investment under PPP model</li>
-                            <li>Develop synchronized tourism infrastructure</li>
-                            <li>Promote Vietnamese culture to the world</li>
+                            <li>Inter-regional tourism linkage model between localities</li>
+                            <li>Creating jobs for local people</li>
+                            <li>Calling for private investment under PPP model</li>
+                            <li>Developing synchronized tourism infrastructure</li>
+                            <li>Promoting Vietnamese cultural image to the world</li>
                         </ul>
                     </div>
                 </div>
@@ -570,7 +768,7 @@ window.addEventListener("resize", updatePadding);
                             <li>Experience unique spiritual culture</li>
                         </ul>
                         <div class="tour-price">Price: 1,200,000 VND/person</div>
-                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book Now</a>
+                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book now</a>
                     </div>
                 </div>
                 
@@ -581,13 +779,13 @@ window.addEventListener("resize", updatePadding);
                         <span class="tour-duration"><i class="fas fa-clock"></i> 2 days 1 night</span>
                         <ul class="tour-highlights">
                             <li>Visit Pho Hien Mother Temple - special national relic</li>
-                            <li>Visit Dong Bang Temple - worshiping Bat Hai King</li>
+                            <li>Visit Dong Bang Temple - worshiping King Father Bat Hai</li>
                             <li>Explore Keo Pagoda - unique 17th century architecture</li>
-                            <li>Experience Northern countryside cultural life</li>
-                            <li>Enjoy specialties of North-South Hung Yen</li>
+                            <li>Experience Northern rural cultural life</li>
+                            <li>Enjoy specialties of North and South Hung Yen</li>
                         </ul>
                         <div class="tour-price">Price: 2,500,000 VND/person</div>
-                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book Now</a>
+                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book now</a>
                     </div>
                 </div>
                 
@@ -601,10 +799,78 @@ window.addEventListener("resize", updatePadding);
                             <li>North Hung Yen: Mother Temple, Chu Dong Tu Temple</li>
                             <li>South Hung Yen: Dong Bang Temple, Keo Pagoda</li>
                             <li>Experience diverse spiritual culture</li>
-                            <li>Discover distinctive cuisine of 3 regions</li>
+                            <li>Explore distinctive cuisine of 3 regions</li>
                         </ul>
                         <div class="tour-price">Price: 5,800,000 VND/person</div>
-                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book Now</a>
+                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Con Vanh Tour -->
+            <div class="tour-container" style="margin-top: 30px;">
+                <div class="tour-card">
+                    <img src="https://www.vietnamairlines.com/~/media/SEO-images/2025%20SEO/Traffic%20TV/khu-du-lich-bien-con-vanh/con-vanh-la-mot-trong-nhung-bai-tam-duoc-yeu-thich.jpg?la=vi-VN" alt="Con Vanh Tour" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">CON VANH BEACH TOUR PROGRAM (2D1N)</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 2 days 1 night</span>
+                        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">DAY 1: EXPLORE CON VANH - BEACH EXPERIENCE</h4>
+                        <ul class="tour-highlights">
+                            <li>07h00: Depart from Hanoi/Hung Yen</li>
+                            <li>11h00: Arrive at Con Vanh Eco-tourism Beach Area</li>
+                            <li>11h30: Check-in (homestay/stilt house/beach resort)</li>
+                            <li>12h00: Lunch with seafood specialties</li>
+                            <li>14h00: Free time for swimming, visiting Bang mangrove forest</li>
+                            <li>17h30: Sunset watching on the beach</li>
+                            <li>18h30: Beachside BBQ seafood dinner</li>
+                            <li>20h00: Campfire, cultural exchange</li>
+                        </ul>
+                        
+                        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">DAY 2: FISHING EXPERIENCE - SHOPPING FOR SPECIALTIES</h4>
+                        <ul class="tour-highlights">
+                            <li>05h30: Sunrise watching, beach walk</li>
+                            <li>06h00: "A day as a fisherman" experience</li>
+                            <li>08h00: Breakfast with clam porridge or fish noodle soup</li>
+                            <li>09h30: Visit seaside seafood market</li>
+                            <li>11h00: Check-out, light lunch</li>
+                            <li>13h00: Return to Hanoi/Hung Yen</li>
+                            <li>17h00: End of journey</li>
+                        </ul>
+                        
+                        <div class="tour-price">Package A: 1 day (round trip) - 650,000đ/person</div>
+                        <div class="tour-price">Package B: 2D1N - 1,290,000đ/person (including meals, accommodation, experiences)</div>
+                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book now</a>
+                    </div>
+                </div>
+                
+                <div class="tour-card">
+                    <img src="https://www.dulichvtv.vn/wp-content/uploads/khu-du-lich-sinh-thai-luu-gia-trang-Tour-du-lich-nam-dinh-1-ngay-600x400.jpg" alt="Nam Dinh Tour" class="tour-image">
+                    <div class="tour-content">
+                        <h3 class="tour-title">NAM DINH 1-DAY TOUR</h3>
+                        <span class="tour-duration"><i class="fas fa-clock"></i> 1 day</span>
+                        <h4 style="margin: 10px 0 5px; color: var(--dark-brown);">DETAILED ITINERARY</h4>
+                        <ul class="tour-highlights">
+                            <li>06h00: Depart from Hanoi</li>
+                            <li>08h30: Visit Tran Temple relic site</li>
+                            <li>10h30: Visit Phu Minh Pagoda</li>
+                            <li>12h00: Lunch at local restaurant</li>
+                            <li>13h30: Visit Phu Day</li>
+                            <li>15h00: Free time for Nam Dinh specialties shopping</li>
+                            <li>16h00: Return to Hanoi</li>
+                            <li>18h30: Arrive in Hanoi - End of tour</li>
+                        </ul>
+                        
+                        <div class="tour-price">Includes:</div>
+                        <ul class="tour-highlights">
+                            <li>Modern tourist vehicle</li>
+                            <li>Professional tour guide</li>
+                            <li>01 standard lunch</li>
+                            <li>Entrance fees per itinerary</li>
+                            <li>Travel insurance, drinking water</li>
+                        </ul>
+                        
+                        <div class="tour-price">Tour price: 650,000 VND/person (group of 20+)</div>
+                        <a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank" class="btn btn-tour">Book now</a>
                     </div>
                 </div>
             </div>
@@ -614,17 +880,17 @@ window.addEventListener("resize", updatePadding);
     <section id="cultural-values" style="background-color: #f9f9f9;">
         <div class="container">
             <h2 class="section-title"><i class="fas fa-landmark"></i> SPIRITUAL & CULTURAL VALUES</h2>
-            <p class="intro-text">Discover the unique cultural-spiritual values along the Red River journey</p>
+            <p class="intro-text">Discover the unique cultural and spiritual values along the Red River journey</p>
             
             <div class="info-row">
                 <img src="https://static.vinwonders.com/production/hung-yen-o-dau-banner.jpg" alt="Cultural values">
                 <div class="info-content">
                     <h3>UNIQUE CULTURAL HERITAGE</h3>
-                    <p>The Red River spiritual journey is a living museum of Vietnamese culture, preserving spiritual values through thousands of years of history. From Mother Goddess worship, Saint worship to unique folk festivals, each destination has its own story about history and culture.</p>
+                    <p>The Red River spiritual journey is a living museum of Vietnamese culture, preserving spiritual values over thousands of years of history. From Mother Goddess worship, Saint worship to unique folk festivals, each destination carries its own story of history and culture.</p>
                     <ul>
                         <li>Mother Goddess worship - UNESCO intangible cultural heritage</li>
-                        <li>Unique mediumship rituals and ceremonial singing</li>
-                        <li>Dragon dances and folk performances</li>
+                        <li>Unique mediumship rituals, Chau Van singing</li>
+                        <li>Dragon dance, unique folk performances</li>
                         <li>Ancient temple architecture hundreds of years old</li>
                     </ul>
                 </div>
@@ -632,10 +898,10 @@ window.addEventListener("resize", updatePadding);
             
             <div class="tips-container">
                 <div class="tip-card">
-                    <h3><i class="fas fa-water"></i> Red River - Sacred Flow</h3>
-                    <p>The mother river that deposits alluvium and crystallizes the spiritual, religious and folk cultural values of the Vietnamese people.</p>
+                    <h3><i class="fas fa-water"></i> Red River - Sacred flow</h3>
+                    <p>The mother river that deposits alluvium and crystallizes the spiritual, religious and unique folk cultural values of the Vietnamese people.</p>
                     
-                    <h3 style="margin-top: 15px;"><i class="fas fa-map-marked-alt"></i> Highlights</h3>
+                    <h3 style="margin-top: 15px;"><i class="fas fa-map-marked-alt"></i> Highlight destinations</h3>
                     <ul style="padding-left: 15px;">
                         <li><strong>Hanoi:</strong> Tay Ho Palace, Tran Quoc Pagoda</li>
                         <li><strong>North Hung Yen:</strong> Pho Hien Mother Temple, Chu Dong Tu Temple</li>
@@ -645,25 +911,25 @@ window.addEventListener("resize", updatePadding);
                 </div>
                 
                 <div class="tip-card">
-                    <h3><i class="fas fa-mountain"></i> Intangible Cultural Heritage</h3>
+                    <h3><i class="fas fa-mountain"></i> Intangible cultural heritage</h3>
                     <p>Living museum of Vietnamese folk beliefs:</p>
                     <ul style="padding-left: 15px;">
                         <li>Mother Goddess worship</li>
-                        <li>Mediumship rituals and ceremonial singing</li>
-                        <li>Dragon dances and folk performances</li>
-                        <li>Ca tru and xam singing</li>
-                        <li>Traditional festivals</li>
+                        <li>Mediumship rituals, Chau Van singing</li>
+                        <li>Dragon dance, folk performances</li>
+                        <li>Ca tru, xam singing art</li>
+                        <li>Unique traditional festivals</li>
                     </ul>
                 </div>
                 
                 <div class="tip-card">
-                    <h3><i class="fas fa-graduation-cap"></i> Education - Back to Roots</h3>
+                    <h3><i class="fas fa-graduation-cap"></i> Education - Returning to roots</h3>
                     <p>Meaningful experiential activities:</p>
                     <ul style="padding-left: 15px;">
                         <li>"A day as temple keeper"</li>
-                        <li>"Palanquin procession and incense offering"</li>
-                        <li>Learn to make ceremonial cakes</li>
-                        <li>Participate in ceremonial singing class</li>
+                        <li>"Palanquin procession, incense offering"</li>
+                        <li>Learn to make round sticky rice cakes for Mother Goddess</li>
+                        <li>Participate in Chau Van singing class</li>
                         <li>Experience traditional crafts</li>
                     </ul>
                 </div>
@@ -679,13 +945,13 @@ window.addEventListener("resize", updatePadding);
             <div class="info-row">
                 <img src="https://bcp.cdnchinhphu.vn/334894974524682240/2024/6/10/hy-17180215364151096761394.jpg" alt="Book tour">
                 <div class="info-content">
-                    <h3>BOOKING PROCESS</h3>
+                    <h3>TOUR BOOKING PROCESS</h3>
                     <div class="booking-steps">
                         <div class="step">
                             <div class="step-number">1</div>
                             <div class="step-content">
-                                <h4>Contact to book</h4>
-                                <p>Call or message via Zalo/Facebook for detailed advice about suitable tours. We're available 24/7.</p>
+                                <h4>Contact to book tour</h4>
+                                <p>Call or message via Zalo/Facebook for detailed advice about suitable tours for your needs. We're always available 24/7.</p>
                             </div>
                         </div>
                         
@@ -693,7 +959,7 @@ window.addEventListener("resize", updatePadding);
                             <div class="step-number">2</div>
                             <div class="step-content">
                                 <h4>Confirm information</h4>
-                                <p>After receiving request, we'll send tour details including itinerary, price, included services via email or message.</p>
+                                <p>After receiving your request, we'll send tour details including itinerary, price, included services and other necessary information via email or message.</p>
                             </div>
                         </div>
                         
@@ -701,7 +967,7 @@ window.addEventListener("resize", updatePadding);
                             <div class="step-number">3</div>
                             <div class="step-content">
                                 <h4>Payment & receive ticket</h4>
-                                <p>Pay via bank transfer or cash at office. After payment, you'll receive e-ticket and detailed travel guide.</p>
+                                <p>Payment via bank transfer or cash at office. After payment, you'll receive e-ticket and detailed instructions for your trip.</p>
                             </div>
                         </div>
                     </div>
@@ -719,8 +985,7 @@ window.addEventListener("resize", updatePadding);
                             </div>
                             <div>
                                 <strong>Phone</strong>
-                                <p>0977 893 086 (24/7)</p>
-                                <p>Hotline: 1900 1234</p>
+                                <p>0393 100 508 (24/7)</p>
                             </div>
                         </div>
                         
@@ -745,7 +1010,7 @@ window.addEventListener("resize", updatePadding);
                             </div>
                             <div>
                                 <strong>Facebook</strong>
-                                <p><a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank">Hung Yen New Travel</a></p>
+                                <p><a href="https://www.facebook.com/profile.php?id=61571817887609" target="_blank">Hung Yen Moi Travel</a></p>
                             </div>
                         </div>
                         
@@ -755,19 +1020,7 @@ window.addEventListener("resize", updatePadding);
                             </div>
                             <div>
                                 <strong>Zalo</strong>
-                                <p>0977 893 086</p>
-                                <p>Zalo community group: 500+ members</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <strong>Office</strong>
-                                <p>123 Trung Trac Street, Hung Yen City</p>
-                                <p>Working hours: 8:00 - 18:00 daily</p>
+                                <p>0393 100 508</p>
                             </div>
                         </div>
                     </div>
@@ -779,20 +1032,20 @@ window.addEventListener("resize", updatePadding);
     <section id="travel-tips">
         <div class="container">
             <h2 class="section-title"><i class="fas fa-lightbulb"></i> USEFUL INFORMATION</h2>
-            <p class="intro-text">Tips to help you have a complete spiritual pilgrimage</p>
+            <p class="intro-text">Tips to help you have the most fulfilling spiritual pilgrimage</p>
             
             <div class="info-row">
                 <img src="https://scontent.iocvnpt.com/resources/portal/Images/TBH/ttxuctien/ck6_606095991.jpg" alt="Useful information">
                 <div class="info-content">
-                    <h3>SPIRITUAL TOURISM EXPERIENCE</h3>
-                    <p>A spiritual trip is not just a journey of discovery but also an opportunity to purify the soul. For a meaningful and smooth trip, visitors should note the following important points.</p>
-                    <p>Clothing when visiting temples should be discreet and polite, preferring elegant colors. Bring small change for offerings, but avoid overuse of votive papers. When entering temple areas, keep quiet, don't speak loudly, don't point at statues. Learn about local customs and rituals in advance to avoid violating taboos.</p>
+                    <h3>SPIRITUAL TRAVEL EXPERIENCE</h3>
+                    <p>A spiritual trip is not just a journey of discovery but also an opportunity to purify the soul. To have a meaningful and smooth trip, visitors should note the following important points.</p>
+                    <p>Clothing when visiting temples should be discreet, polite, preferably in elegant colors. Bring small change for offerings, but avoid excessive burning of votive papers. When entering temple areas, keep quiet, don't speak loudly, don't point at worship statues. Learn about local customs and rituals in advance to avoid violating taboos.</p>
                 </div>
             </div>
             
             <div class="tips-container">
                 <div class="tip-card">
-                    <h3><i class="fas fa-calendar-alt"></i> Ideal Time</h3>
+                    <h3><i class="fas fa-calendar-alt"></i> Ideal time</h3>
                     
                     <div class="best-time">
                         <div class="time-item">
@@ -801,7 +1054,7 @@ window.addEventListener("resize", updatePadding);
                             </div>
                             <div>
                                 <strong>Spring (Jan-Mar)</strong>
-                                <p>Season of big festivals, cool weather, many unique cultural activities</p>
+                                <p>Season of major festivals, cool weather, many unique cultural activities</p>
                             </div>
                         </div>
                         
@@ -811,7 +1064,7 @@ window.addEventListener("resize", updatePadding);
                             </div>
                             <div>
                                 <strong>Summer (Apr-Jun)</strong>
-                                <p>See golden rice fields, warm weather, convenient for travel</p>
+                                <p>View golden rice fields, warm weather, convenient for travel</p>
                             </div>
                         </div>
                         
@@ -830,7 +1083,7 @@ window.addEventListener("resize", updatePadding);
                 <div class="tip-card">
                     <h3><i class="fas fa-suitcase"></i> Preparation</h3>
                     <ul style="padding-left: 15px;">
-                        <li>Discreet, polite clothing (prefer dark colors)</li>
+                        <li>Discreet, polite clothing (preferably dark colors)</li>
                         <li>Comfortable walking shoes</li>
                         <li>Small change for offerings (exchange in advance)</li>
                         <li>Camera or phone (silent mode in temples)</li>
@@ -838,31 +1091,31 @@ window.addEventListener("resize", updatePadding);
                         <li>Personal medicine (if needed)</li>
                     </ul>
                     
-                    <h3 style="margin-top: 15px;"><i class="fas fa-utensils"></i> Local Specialties</h3>
+                    <h3 style="margin-top: 15px;"><i class="fas fa-utensils"></i> Specialties</h3>
                     <ul style="padding-left: 15px;">
-                        <li>Lang Kenh rolled rice pancakes (North Hung Yen)</li>
+                        <li>Lang Kenh steamed rice rolls (North Hung Yen)</li>
                         <li>Quynh Coi fish soup (South Hung Yen)</li>
-                        <li>Ninh Binh crispy rice</li>
-                        <li>Ne Chau sticky rice cake</li>
+                        <li>Ninh Binh burnt rice</li>
+                        <li>Ne Chau black sticky rice cake</li>
                         <li>Me So sweetened sticky rice</li>
                     </ul>
                 </div>
                 
                 <div class="tip-card">
-                    <h3><i class="fas fa-map-marked-alt"></i> Transportation</h3>
+                    <h3><i class="fas fa-map-marked-alt"></i> Transportation along the route</h3>
                     <ul style="padding-left: 15px;">
-                        <li><strong>Motorbike:</strong> 100,000-150,000VND/day, flexible but tiring</li>
-                        <li><strong>Taxi:</strong> Available at tourist spots, 10,000-15,000VND/km</li>
-                        <li><strong>River boat:</strong> Unique experience, 200,000-500,000VND/person</li>
-                        <li><strong>Bicycle:</strong> Rent at tourist spots, 50,000-80,000VND/day</li>
-                        <li><strong>Tour bus:</strong> Convenient, pick-up service</li>
+                        <li><strong>Motorbike:</strong> 100,000-150,000đ/day, flexible but tiring</li>
+                        <li><strong>Taxi:</strong> Available at tourist spots, 10,000-15,000đ/km</li>
+                        <li><strong>River boat:</strong> Unique experience, 200,000-500,000đ/person</li>
+                        <li><strong>Bicycle:</strong> Rental at tourist spots, 50,000-80,000đ/day</li>
+                        <li><strong>Tour bus:</strong> Convenient, door-to-door service</li>
                     </ul>
                     
                     <h3 style="margin-top: 15px;"><i class="fas fa-hotel"></i> Accommodation</h3>
                     <ul style="padding-left: 15px;">
-                        <li>3-4 star hotels: 800,000-1,500,000VND/night</li>
-                        <li>Homestay: 300,000-600,000VND/night</li>
-                        <li>Guesthouse: 200,000-400,000VND/night</li>
+                        <li>3-4 star hotels: 800,000-1,500,000đ/night</li>
+                        <li>Homestay: 300,000-600,000đ/night</li>
+                        <li>Guesthouse: 200,000-400,000đ/night</li>
                     </ul>
                 </div>
             </div>
@@ -877,7 +1130,7 @@ window.addEventListener("resize", updatePadding);
                     <h3>CONTACT & FEEDBACK</h3>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>Hotline: 0977893086</span>
+                        <span>Hotline: 0393100508</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
@@ -900,7 +1153,7 @@ window.addEventListener("resize", updatePadding);
                                 <label for="poor">Poor</label>
                             </div>
                         </div>
-                        <button type="button" class="submit-btn" onclick="submitFeedback()">Submit</button>
+                        <button type="button" class="submit-btn" onclick="submitFeedback()">Submit feedback</button>
                     </div>
                 </div>
                 
@@ -934,6 +1187,25 @@ window.addEventListener("resize", updatePadding);
                 case 'average': return 'Average';
                 case 'poor': return 'Poor';
                 default: return '';
+            }
+        }
+        
+        // Video gallery functionality
+        let currentVideoSet = 1;
+        const totalVideoSets = 7;
+        
+        function loadMoreVideos() {
+            if (currentVideoSet <= totalVideoSets) {
+                const nextSet = document.getElementById(`moreVideos${currentVideoSet}`);
+                if (nextSet) {
+                    nextSet.classList.remove('hidden');
+                    currentVideoSet++;
+                    
+                    // Hide button if all videos are loaded
+                    if (currentVideoSet > totalVideoSets) {
+                        document.querySelector('.load-more-btn').style.display = 'none';
+                    }
+                }
             }
         }
     </script>
