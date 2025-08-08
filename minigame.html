@@ -49,6 +49,19 @@
             transform: translateY(-3px);
         }
         
+        .btn-start {
+            background-color: var(--primary-red);
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-start:hover {
+            background-color: #b30000;
+            transform: translateY(-3px);
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -88,11 +101,11 @@
             z-index: 1;
         }
         
-        .start-screen, .game-screen, .result-screen {
+        .start-screen, .game-screen, .result-screen, .info-screen {
             text-align: center;
         }
         
-        .game-screen, .result-screen {
+        .game-screen, .result-screen, .info-screen {
             display: none;
         }
         
@@ -179,9 +192,8 @@
             margin-bottom: 20px;
         }
         
-        /* Prize Form Styles */
-        .prize-form-container {
-            display: none;
+        /* Info Form Styles */
+        .info-form-container {
             margin-top: 30px;
             padding: 20px;
             background-color: #f9f9f9;
@@ -189,7 +201,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .prize-form-container h2 {
+        .info-form-container h2 {
             text-align: center;
             color: var(--primary-red);
             margin-bottom: 20px;
@@ -211,6 +223,22 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
+        }
+        
+        /* Prize Form Styles */
+        .prize-form-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .prize-form-container h2 {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 20px;
         }
         
         .prize-option {
@@ -295,7 +323,29 @@
                 <p>- You have 15 seconds to answer each question</p>
                 <p>- There are 15 multiple-choice questions in total</p>
                 <p>- Results will be evaluated based on correct answers</p>
-                <button id="start-btn" class="btn">Start Game</button>
+                <button id="start-btn" class="btn btn-start">Start Quiz</button>
+            </div>
+            
+            <!-- Info Screen -->
+            <div class="info-screen">
+                <h3>Please enter your information</h3>
+                <div class="info-form-container">
+                    <form id="info-form">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Class (or address):</label>
+                            <input type="text" id="class" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <button type="submit" class="btn">Start Quiz</button>
+                    </form>
+                </div>
             </div>
             
             <!-- Game Screen -->
@@ -316,26 +366,12 @@
                 </div>
                 <div class="score" id="score"></div>
                 <div class="result-message" id="result-message"></div>
-                <button id="restart-btn" class="btn">Play Again</button>
-                <button id="leaderboard-btn" class="btn" style="margin-top: 15px;">View Leaderboard</button>
                 
                 <!-- Prize Form (shown only for perfect score) -->
                 <div class="prize-form-container" id="prize-form-container">
                     <h2>Congratulations on your perfect score!</h2>
-                    <p>Please fill in your information to claim your prize:</p>
+                    <p>Please choose your prize:</p>
                     <form id="prize-form">
-                        <div class="form-group">
-                            <label for="name">Full Name:</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="class">Class (or address)</label>
-                            <input type="text" id="class" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" required>
-                        </div>
                         <div class="form-group">
                             <label>Choose your prize:</label>
                             <div class="prize-option">
@@ -359,9 +395,12 @@
                                 <label for="union-point" style="font-weight: normal;">2 bonus points in Youth Union activities</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn">Claim Prize</button>
+                        <button type="submit" class="btn">Confirm Prize</button>
                     </form>
                 </div>
+                
+                <button id="restart-btn" class="btn">Play Again</button>
+                <button id="leaderboard-btn" class="btn" style="margin-top: 15px;">View Leaderboard</button>
             </div>
         </div>
     </div>
@@ -433,106 +472,6 @@
                 question: "When was Hung Yen established?",
                 options: ["1831", "1890", "1900", "1954"],
                 answer: 0
-            },
-            {
-                question: "Which of the following is NOT a specialty of Hung Yen?",
-                options: ["Egg lychee", "Fermented pork roll", "Tieu Quan chicken sausage", "Ban soybean paste"],
-                answer: 1
-            },
-            {
-                question: "How many top scholars (Trang Nguyen) did Hung Yen (new) have in history?",
-                options: ["8", "9", "10", "11"],
-                answer: 2
-            },
-            {
-                question: "During which period was Pho Hien the largest commercial port in Vietnam?",
-                options: ["14th-15th century", "15th-16th century", "16th-17th century", "17th-18th century"],
-                answer: 2
-            },
-            {
-                question: "Which country did Pho Hien trade with?",
-                options: ["Japan", "Egypt", "Mexico", "Canada"],
-                answer: 0
-            },
-            {
-                question: "Which historical figure is known as 'Top Scholar of the Longan Land'?",
-                options: ["Tran Quoc Tuan", "Mac Dinh Chi", "Nguyen Thien Thuat", "Nguyen Trai"],
-                answer: 2
-            },
-            {
-                question: "Which deity is worshipped at Pho Hien Mother Temple?",
-                options: ["Lady of the Realm", "Yang Guifei", "Saint Giong", "Holy Mother of the Nine Heavens"],
-                answer: 1
-            },
-            {
-                question: "How many national relics does Hung Yen (new) have?",
-                options: ["5", "6", "7", "8"],
-                answer: 1
-            },
-            {
-                question: "Which economic region does Hung Yen belong to?",
-                options: ["Northwest", "North Central Coast", "Red River Delta", "Southeast"],
-                answer: 2
-            },
-            {
-                question: "Which traditional village in Hung Yen is famous for incense making?",
-                options: ["Cao Thon village", "Chuong village", "Van Phuc village", "Nu village"],
-                answer: 0
-            },
-            {
-                question: "How many commune-level administrative units does new Hung Yen province have?",
-                options: ["81", "93", "104", "201"],
-                answer: 2
-            },
-            {
-                question: "What is the natural area of Hung Yen?",
-                options: ["2515 km²", "2618 km²", "2451 km²", "2648 km²"],
-                answer: 0
-            },
-            {
-                question: "Where is General Secretary To Lam's hometown?",
-                options: ["Tien Phong commune, An Thi district, Hung Yen province", "Phung Hung commune, Khoai Chau district, Hung Yen province", "Van Lam district, Hung Yen province", "Nghia Tru commune, Van Giang district, Hung Yen province"],
-                answer: 3
-            },
-            {
-                question: "What is the capital city of new Hung Yen province?",
-                options: ["Van Giang district", "Hung Yen City", "Khoai Chau district", "Yen My district"],
-                answer: 1
-            },
-            {
-                question: "Which type of rice from new Hung Yen has been internationally recognized?",
-                options: ["ST25", "TBR39", "Bac Huong", "IR64"],
-                answer: 1
-            },
-            {
-                question: "What is the largest industrial park in Hung Yen?",
-                options: ["VSIP", "Thang Long II", "Dai An", "Pho Noi A"],
-                answer: 1
-            },
-            {
-                question: "New Hung Yen's urban development policy is associated with:",
-                options: ["Spiritual tourism", "Fishing industry", "Agricultural training", "Mechanical industry"],
-                answer: 0
-            },
-            {
-                question: "Which important traffic route connects Hung Yen with other provinces?",
-                options: ["National Highway 1A", "Hanoi - Hai Phong Expressway", "National Highway 14", "North-South Railway"],
-                answer: 1
-            },
-            {
-                question: "How many industrial parks are operating in Hung Yen?",
-                options: ["5", "7", "8", "12"],
-                answer: 2
-            },
-            {
-                question: "Hung Yen is known as:",
-                options: ["Tea capital", "Land of longan", "City by the river", "Ancestral land"],
-                answer: 1
-            },
-            {
-                question: "What does the name 'Pho Hien' reflect about Hung Yen's historical and cultural characteristics?",
-                options: ["The military role of the region during the Le Dynasty", "The tradition of scholarship and worship of famous people", "A gathering place for merchants, the largest commercial port of the court", "The name of a merchant ship in history"],
-                answer: 2
             }
         ];
         
@@ -543,11 +482,13 @@
         let timeLeft = 15;
         let selectedOption = null;
         let questions = [];
+        let playerInfo = {};
         
         // DOM Elements
         const startScreen = document.querySelector('.start-screen');
         const gameScreen = document.querySelector('.game-screen');
         const resultScreen = document.querySelector('.result-screen');
+        const infoScreen = document.querySelector('.info-screen');
         const startBtn = document.getElementById('start-btn');
         const nextBtn = document.getElementById('next-btn');
         const restartBtn = document.getElementById('restart-btn');
@@ -561,9 +502,29 @@
         const resultIconEl = document.getElementById('result-icon');
         const prizeFormContainer = document.getElementById('prize-form-container');
         const prizeForm = document.getElementById('prize-form');
+        const infoForm = document.getElementById('info-form');
         
         // Start game
-        startBtn.addEventListener('click', startGame);
+        startBtn.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            infoScreen.style.display = 'block';
+        });
+        
+        // Info form submission
+        infoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            playerInfo = {
+                name: document.getElementById('name').value,
+                class: document.getElementById('class').value,
+                phone: document.getElementById('phone').value,
+                prize: "No prize", // Default value
+                score: 0
+            };
+            
+            startGame();
+        });
+        
         nextBtn.addEventListener('click', nextQuestion);
         restartBtn.addEventListener('click', restartGame);
         leaderboardBtn.addEventListener('click', () => {
@@ -575,27 +536,20 @@
             e.preventDefault();
             
             try {
-                const name = document.getElementById('name').value;
-                const className = document.getElementById('class').value;
-                const phone = document.getElementById('phone').value;
                 const prize = document.querySelector('input[name="prize"]:checked').value;
+                playerInfo.prize = prize; // Update prize information
+                
                 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
                 const language = 'English';
                 
                 // Save to Firestore
-                await db.collection("winners").add({
-                    name: name,
-                    class: className,
-                    phone: phone,
-                    prize: prize,
-                    score: 15,
+                await db.collection("players").add({
+                    ...playerInfo,
                     timestamp: timestamp,
                     language: language
                 });
                 
-                // Show fireworks
                 fireConfetti();
-                
                 alert("Your information has been recorded. Congratulations on winning the prize!");
                 prizeForm.reset();
             } catch (error) {
@@ -619,11 +573,10 @@
             // Select random 15 questions
             questions = getRandomQuestions(15);
             
-            startScreen.style.display = 'none';
+            infoScreen.style.display = 'none';
             gameScreen.style.display = 'block';
             currentQuestion = 0;
             score = 0;
-            prizeFormContainer.style.display = 'none';
             loadQuestion();
         }
         
@@ -686,6 +639,9 @@
             gameScreen.style.display = 'none';
             resultScreen.style.display = 'block';
             
+            // Update player score
+            playerInfo.score = score;
+            
             // Show result
             scoreEl.textContent = `You answered ${score}/${questions.length} questions correctly`;
             
@@ -708,11 +664,32 @@
                     prizeFormContainer.scrollIntoView({ behavior: 'smooth' });
                 }, 500);
             }
+            
+            // Save results to Firebase (except perfect scores which will be saved after prize selection)
+            if (score < 15) {
+                saveToFirebase();
+            }
+        }
+        
+        async function saveToFirebase() {
+            try {
+                const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+                const language = 'English';
+                
+                await db.collection("players").add({
+                    ...playerInfo,
+                    timestamp: timestamp,
+                    language: language
+                });
+            } catch (error) {
+                console.error("Error adding document: ", error);
+            }
         }
         
         function restartGame() {
             resultScreen.style.display = 'none';
-            startGame();
+            startScreen.style.display = 'block';
+            prizeFormContainer.style.display = 'none';
         }
         
         function startTimer() {
@@ -777,7 +754,7 @@
         function updatePadding() {
             const screenWidth = window.innerWidth; 
             const padding = screenWidth * 0.2; 
-            document.body.style.paddingTop = 50 + padding + "px";
+            document.body.style.paddingTop = 100 + padding + "px";
         }
 
         window.addEventListener("load", updatePadding);
