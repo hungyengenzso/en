@@ -260,6 +260,55 @@
             margin-right: 10px;
         }
         
+        /* Rewards Section */
+        .rewards-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .rewards-title {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .reward-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .reward-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .reward-icon {
+            font-size: 2rem;
+            width: 60px;
+            text-align: center;
+            margin-right: 15px;
+            color: var(--primary-red);
+        }
+        
+        .reward-content h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        
+        .reward-content p {
+            margin: 0;
+            color: #666;
+        }
+        
         @media (max-width: 768px) {
             .game-container {
                 padding: 20px;
@@ -267,6 +316,16 @@
             
             .question {
                 font-size: 1.1rem;
+            }
+            
+            .reward-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .reward-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
             }
         }
         
@@ -312,10 +371,29 @@
     <div class="container">
         <h2 class="section-title"><i class="fas fa-gamepad"></i> MINI GAME: NEW HUNG YEN KNOWLEDGE</h2>
         <p class="intro-text">Test your knowledge about Hung Yen province after merging with Thai Binh</p>
-<iframe 
-    src="https://hungyenhoinhapvaphattrien.github.io/en/bxh" 
-    style="width: 100%; height: 250px; border: none; display: block;">
-</iframe>
+        
+        <!-- Leaderboard -->
+        <iframe 
+            src="https://hungyenhoinhapvaphattrien.github.io/en/bxh" 
+            style="width: 100%; height: 250px; border: none; display: block;">
+        </iframe>
+        
+        <!-- Rewards Section -->
+        <div class="rewards-section">
+            <h2 class="rewards-title"><i class="fas fa-gift"></i> PRIZES</h2>
+            
+            <div class="reward-item">
+                <div class="reward-icon">
+                    <i class="fas fa-trophy gold"></i>
+                </div>
+                <div class="reward-content">
+                    <h3>Special Prize (15/15 points)</h3>
+                    <p>Choose one: 20% discount voucher or 2 bonus points in selected subjects</p>
+                </div>
+            </div>
+            
+        </div>
+
         <div class="game-container">
             <!-- Start Screen -->
             <div class="start-screen">
