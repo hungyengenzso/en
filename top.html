@@ -128,10 +128,19 @@
     /* Bottom banner */
     .banner {
       width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner a {
+      display: block;
+      width: 100%;
     }
     .banner img {
       width: 100%;
       height: auto;
+      display: none;
+    }
+    .banner img.active {
       display: block;
     }
 
@@ -232,11 +241,12 @@
     </div>
   </nav>
 
-  <!-- Bottom banner -->
+  <!-- Bottom banner - Updated with rotating banners -->
   <div class="banner">
-  <a href="https://hungyengenzso.github.io/dangbai/post.html" target="_blank">
-    <img src="https://hungyengenzso.github.io/en/BAONEW.png" alt="Banner">
-  </a>
+    <a href="https://hungyengenzso.github.io/dangbai/post.html" target="_blank" id="banner-link">
+      <img src="https://hungyengenzso.github.io/en/BAONEW.png" alt="Banner" class="active" id="banner1">
+      <img src="https://hungyengenzso.github.io/en/BAONEW2.png" alt="Banner" id="banner2">
+    </a>
   </div>
 
   <!-- Font Awesome -->
@@ -244,12 +254,33 @@
 
   <!-- Banner image rotation JS -->
   <script>
+    // Top banner rotation
     const images = document.querySelectorAll('.header img');
     let current = 0;
     setInterval(() => {
       images[current].classList.remove('active');
       current = (current + 1) % images.length;
       images[current].classList.add('active');
+    }, 5000);
+
+    // Bottom banner rotation
+    const banner1 = document.getElementById('banner1');
+    const banner2 = document.getElementById('banner2');
+    const bannerLink = document.getElementById('banner-link');
+    let bannerActive = 1;
+    
+    setInterval(() => {
+      if (bannerActive === 1) {
+        banner1.classList.remove('active');
+        banner2.classList.add('active');
+        bannerLink.href = "https://hungyengenzso.github.io/vi/vietnam";
+        bannerActive = 2;
+      } else {
+        banner2.classList.remove('active');
+        banner1.classList.add('active');
+        bannerLink.href = "https://hungyengenzso.github.io/dangbai/post.html";
+        bannerActive = 1;
+      }
     }, 5000);
 
     // Responsive menu toggle
